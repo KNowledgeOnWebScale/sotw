@@ -1,0 +1,67 @@
+<pre class='metadata'>
+Title: State of the World for Open Digital Rights Language (ODRL) Evaluator
+Shortname: SotW
+Level: none
+Status: LD
+Editor: Beatriz Esteves, Ghent University - imec http://idlab.ugent.be/, beatriz.esteves@ugent.be
+Editor: Wout Slabbinck, Ghent University - imec http://idlab.ugent.be/, wout.slabbinck@ugent.be
+Abstract: TODO
+Markup Shorthands: markdown yes, css no
+URL: https://w3id.org/force/sotw
+Previous Version: _ORCHESTRATOR_PREVIOUS_BUILD_FULL_LINK_
+Repository: https://github.com/KNowledgeOnWebScale/sotw
+!License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA-4.0</a>
+</pre>
+
+<p boilerplate="copyright">
+  <!-- This document is made available under the CC-BY-SA-4.0 License. -->
+</p>
+
+<pre class=biblio> 
+{"odrl-formal-semantics": {
+    "href": "https://w3c.github.io/odrl/formal-semantics/",
+    "title": "ODRL Formal Semantics",
+    "authors": [
+        "Nicoletta Fornara",
+        "Víctor Rodríguez-Doncel",
+        "Beatriz Esteves",
+        "Simon Steyskal",
+        "Benedict Whittam Smith"
+		]
+    }
+}
+</pre>
+
+Introd­uction {#introduction}
+=====================
+TODO: write full text
+Mention ODRL
+[[!ODRL-model]] [[!odrl-vocab]]
+
+Formal Semantics spec [[!odrl-formal-semantics]]
+
+## Terminology ## {#terminology}
+
+TODO
+
+Supporting Materials {#supporting-materials}
+=====================
+
+- FORCE: https://w3id.org/force/
+- ODRL Compliance Report: https://w3id.org/force/compliance-report
+    - repo: https://w3id.org/force/compliance-report/repo
+- test suite: https://w3id.org/force/test-suite
+    - repo: https://w3id.org/force/test-suite/repo
+- github repository for an ODRL Evaluator: [https://w3id.org/force/evaluator](https://w3id.org/force/evaluator)
+
+Namespaces {#namespaces}
+=====================
+
+Commonly used namespace prefixes used in this specification:
+```turtle
+@prefix dcterms:    <http://purl.org/dc/terms/> .
+@prefix odrl:   <http://www.w3.org/ns/odrl/2/>.
+@prefix report: <https://w3id.org/force/compliance-report#>
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+```
