@@ -42,13 +42,13 @@ Formal Semantics spec [[!odrl-formal-semantics]]
 ## Terminology ## {#terminology}
 
 <dl>
-  <dt><dfn>ODRL Compliance Report</dfn></dt>
+  <dt><dfn id="compliance-report">ODRL Compliance Report</dfn></dt>
   <dd>A vocabulary that is used to elaborate the result of an evaluation of an ODRL Policy, (optionally) ODRL Request and the State of the World. It elaborates not only whether a rule from a policy is active, but also why.</dd>
 
-  <dt><dfn>ODRL Evaluator</dfn></dt>
+  <dt><dfn id="evaluator">ODRL Evaluator</dfn></dt>
   <dd>A system that determines whether the Rules of an ODRL Policy expression have meet their intended action performance.</dd>
 
-  <dt><dfn>State of the World</dfn></dt>
+  <dt><dfn id="sotw-dfn">State of the World</dfn></dt>
   <dd>A set of knowledge representing real-world information aiding the evaluation of ODRL Policies.</dd>
 </dl>
 
@@ -57,17 +57,43 @@ State of the World Representation {#sotw-representation}
 
 Minimal set of information that needs to be represented in the SotW and existing terms that can be reused to represent it:
 
-- current time: <a href="http://purl.org/dc/terms/issued">dcterms:issued</a>
+- current time: [dcterms:issued](http://purl.org/dc/terms/issued)
 
 Example: <code>ex:currentTime dct:issued "2024-01-01T00:00:00"^^xsd:dateTime .</code>
 
-- location: <a href="https://w3id.org/dpv/loc">DPV's location</a> extension models locations based on the <a href="https://en.wikipedia.org/wiki/ISO_3166">ISO 3166</a> and <a href="https://unstats.un.org/unsd/methodology/m49">UN M49</a> standards.
+- location: [DPV's location](https://w3id.org/dpv/loc) extension models locations based on the [ISO 3166](https://en.wikipedia.org/wiki/ISO_3166) and [UN M49](https://unstats.un.org/unsd/methodology/m49) standards.
 
 Example: <code>ex:location dpv:hasLocation loc:BE .</code>
 
-- asset/party collections: <a href="http://www.w3.org/ns/odrl/2/partOf">odrl:partOf</a>
+- asset/party collections: [odrl:partOf](http://www.w3.org/ns/odrl/2/partOf)
 
-Example: <code>ex:asset odrl:partOf ex:assetCollection .</code>
+Example:
+<code>
+    <pre>
+        ex:asset odrl:partOf ex:assetCollection .
+        ex:alice odrl:partOf ex:partyIdentifier.
+    </pre>
+</code>
+
+- performed actions: extracted from existing [Compliance Reports](#compliance-report)
+
+Example:
+<code>
+    <pre>
+        ex:policyReport a report:PolicyReport ;
+            dcterms:created "2024-02-12T11:20:10.999Z"^^xsd:dateTime ;
+            report:policy ex:policy ;
+            report:ruleReport ex:dutyReport .
+        ex:dutyReport a report:DutyReport ;
+            report:attemptState report:Attempted ;
+            report:rule ex:duty ;
+            report:performanceState report:Performed ;
+            report:deonticState report:Fulfilled .
+        ex:duty a odrl:Duty ;
+            odrl:action odrl:compensate ;
+            odrl:assignee ex:alice .
+    </pre>
+</code>
 
 Note: Should we be explicit about the context on which this SotW is valid?
 First thought to make this happen is to model SotW as a concept and have properties to connect an instance of SotW with
@@ -75,22 +101,22 @@ contextual information that describes that SotW.
 Example:
 <code>
     <pre>
-    ex:sotw a sotw:SotW ;
-        sotw:currentTime ex:currentTime ;
-        sotw:location ex:location ;
-        sotw:assetCollection ex:assetCollection ;
-        ...
+        ex:sotw a sotw:SotW ;
+            sotw:currentTime ex:currentTime ;
+            sotw:location ex:location ;
+            sotw:assetCollection ex:assetCollection ;
+            ...
     </pre>
 </code>
 
 Supporting Materials {#supporting-materials}
 ============================================
 
-- FORCE: https://w3id.org/force/
-- ODRL Compliance Report: https://w3id.org/force/compliance-report
-    - repo: https://w3id.org/force/compliance-report/repo
-- test suite: https://w3id.org/force/test-suite
-    - repo: https://w3id.org/force/test-suite/repo
+- FORCE: [https://w3id.org/force](https://w3id.org/force)
+- ODRL Compliance Report: [https://w3id.org/force/compliance-report](https://w3id.org/force/compliance-report)
+    - repo: [https://w3id.org/force/compliance-report/repo](https://w3id.org/force/compliance-report/repo)
+- test suite: [https://w3id.org/force/test-suite](https://w3id.org/force/test-suite)
+    - repo: [https://w3id.org/force/test-suite/repo](https://w3id.org/force/test-suite/repo)
 - github repository for an ODRL Evaluator: [https://w3id.org/force/evaluator](https://w3id.org/force/evaluator)
 
 Namespaces {#namespaces}
@@ -102,8 +128,9 @@ Commonly used namespace prefixes used in this specification:
 @prefix dpv:     <https://w3id.org/dpv#> .
 @prefix ex:      <http://example.org/> .
 @prefix loc:     <https://w3id.org/dpv/loc#> .
-@prefix odrl:    <http://www.w3.org/ns/odrl/2/>.
-@prefix report:  <https://w3id.org/force/compliance-report#>
+@prefix odrl:    <http://www.w3.org/ns/odrl/2/> .
+@prefix report:  <https://w3id.org/force/compliance-report#> .
+@prefix sotw:    <https://w3id.org/force/sotw#> .
 @prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
 ```

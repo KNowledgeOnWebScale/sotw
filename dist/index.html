@@ -1490,7 +1490,7 @@ Possible extra rowspan handling
 </style>
   <meta content="Bikeshed version b25686b9f, updated Fri Mar 14 14:15:20 2025 -0700" name="generator">
   <link href="https://w3id.org/force/sotw" rel="canonical">
-  <meta content="32390f08404b1f8d630fb29fafa2a1100dae577e" name="revision">
+  <meta content="bdacefcd16ed8cb849bb72c7ef65fd6c15662629" name="revision">
   <meta content="dark light" name="color-scheme">
 <style>/* Boilerplate: style-autolinks */
 .css.css, .property.property, .descriptor.descriptor {
@@ -2195,11 +2195,11 @@ Mention ODRL <a data-link-type="biblio" href="#biblio-odrl-model" title="ODRL In
    <p>Formal Semantics spec <a data-link-type="biblio" href="#biblio-odrl-formal-semantics" title="ODRL Formal Semantics">[odrl-formal-semantics]</a></p>
    <h3 class="heading settled" data-level="1.1" id="terminology"><span class="secno">1.1. </span><span class="content">Terminology</span><a class="self-link" href="#terminology"></a></h3>
    <dl>
-    <dt><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="odrl-compliance-report">ODRL Compliance Report</dfn>
+    <dt><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="compliance-report">ODRL Compliance Report</dfn>
     <dd>A vocabulary that is used to elaborate the result of an evaluation of an ODRL Policy, (optionally) ODRL Request and the State of the World. It elaborates not only whether a rule from a policy is active, but also why.
-    <dt><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="odrl-evaluator">ODRL Evaluator</dfn>
+    <dt><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="evaluator">ODRL Evaluator</dfn>
     <dd>A system that determines whether the Rules of an ODRL Policy expression have meet their intended action performance.
-    <dt><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="state-of-the-world">State of the World</dfn>
+    <dt><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="sotw-dfn">State of the World</dfn>
     <dd>A set of knowledge representing real-world information aiding the evaluation of ODRL Policies.
    </dl>
    <h2 class="heading settled" data-level="2" id="sotw-representation"><span class="secno">2. </span><span class="content">State of the World Representation</span><a class="self-link" href="#sotw-representation"></a></h2>
@@ -2218,7 +2218,30 @@ Mention ODRL <a data-link-type="biblio" href="#biblio-odrl-model" title="ODRL In
     <li data-md>
      <p>asset/party collections: <a href="http://www.w3.org/ns/odrl/2/partOf">odrl:partOf</a></p>
    </ul>
-   <p>Example: <code>ex:asset odrl:partOf ex:assetCollection .</code></p>
+   <p>Example: <code></code></p>
+   <code> <pre>ex:asset odrl:partOf ex:assetCollection .
+ex:alice odrl:partOf ex:partyIdentifier.
+</pre></code>
+   <p><code></code></p>
+   <ul>
+    <li data-md>
+     <p>performed actions: extracted from existing <a href="#compliance-report" id="ref-for-compliance-report">Compliance Reports</a></p>
+   </ul>
+   <p>Example: <code></code></p>
+   <code> <pre>ex:policyReport a report:PolicyReport ;
+    dcterms:created "2024-02-12T11:20:10.999Z"^^xsd:dateTime ;
+    report:policy ex:policy ;
+    report:ruleReport ex:dutyReport .
+ex:dutyReport a report:DutyReport ;
+    report:attemptState report:Attempted ;
+    report:rule ex:duty ;
+    report:performanceState report:Performed ;
+    report:deonticState report:Fulfilled .
+ex:duty a odrl:Duty ;
+    odrl:action odrl:compensate ;
+    odrl:assignee ex:alice .
+</pre></code>
+   <p><code></code></p>
    <p class="note" role="note"><span class="marker">Note:</span> Should we be explicit about the context on which this SotW is valid?
 First thought to make this happen is to model SotW as a concept and have properties to connect an instance of SotW with
 contextual information that describes that SotW.
@@ -2233,18 +2256,18 @@ Example: <code></code></p>
    <h2 class="heading settled" data-level="3" id="supporting-materials"><span class="secno">3. </span><span class="content">Supporting Materials</span><a class="self-link" href="#supporting-materials"></a></h2>
    <ul>
     <li data-md>
-     <p>FORCE: https://w3id.org/force/</p>
+     <p>FORCE: <a href="https://w3id.org/force">https://w3id.org/force</a></p>
     <li data-md>
-     <p>ODRL Compliance Report: https://w3id.org/force/compliance-report</p>
+     <p>ODRL Compliance Report: <a href="https://w3id.org/force/compliance-report">https://w3id.org/force/compliance-report</a></p>
      <ul>
       <li data-md>
-       <p>repo: https://w3id.org/force/compliance-report/repo</p>
+       <p>repo: <a href="https://w3id.org/force/compliance-report/repo">https://w3id.org/force/compliance-report/repo</a></p>
      </ul>
     <li data-md>
-     <p>test suite: https://w3id.org/force/test-suite</p>
+     <p>test suite: <a href="https://w3id.org/force/test-suite">https://w3id.org/force/test-suite</a></p>
      <ul>
       <li data-md>
-       <p>repo: https://w3id.org/force/test-suite/repo</p>
+       <p>repo: <a href="https://w3id.org/force/test-suite/repo">https://w3id.org/force/test-suite/repo</a></p>
      </ul>
     <li data-md>
      <p>github repository for an ODRL Evaluator: <a href="https://w3id.org/force/evaluator">https://w3id.org/force/evaluator</a></p>
@@ -2255,8 +2278,9 @@ Example: <code></code></p>
 <c- k>@prefix</c-> <c- nn>dpv:</c->     <c- g>&lt;https://w3id.org/dpv#></c-> <c- p>.</c->
 <c- k>@prefix</c-> <c- nn>ex:</c->      <c- g>&lt;http://example.org/></c-> <c- p>.</c->
 <c- k>@prefix</c-> <c- nn>loc:</c->     <c- g>&lt;https://w3id.org/dpv/loc#></c-> <c- p>.</c->
-<c- k>@prefix</c-> <c- nn>odrl:</c->    <c- g>&lt;http://www.w3.org/ns/odrl/2/></c-><c- p>.</c->
-<c- k>@prefix</c-> <c- nn>report:</c->  <c- g>&lt;https://w3id.org/force/compliance-report#></c->
+<c- k>@prefix</c-> <c- nn>odrl:</c->    <c- g>&lt;http://www.w3.org/ns/odrl/2/></c-> <c- p>.</c->
+<c- k>@prefix</c-> <c- nn>report:</c->  <c- g>&lt;https://w3id.org/force/compliance-report#></c-> <c- p>.</c->
+<c- k>@prefix</c-> <c- nn>sotw:</c->    <c- g>&lt;https://w3id.org/force/sotw#></c-> <c- p>.</c->
 <c- k>@prefix</c-> <c- nn>rdf:</c->     <c- g>&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#></c-> <c- p>.</c->
 <c- k>@prefix</c-> <c- nn>xsd:</c->     <c- g>&lt;http://www.w3.org/2001/XMLSchema#></c-> <c- p>.</c->
 </pre>
@@ -2410,9 +2434,9 @@ Example: <code></code></p>
   <h2 class="no-num no-ref heading settled" id="index"><span class="content">Index</span><a class="self-link" href="#index"></a></h2>
   <h3 class="no-num no-ref heading settled" id="index-defined-here"><span class="content">Terms defined by this specification</span><a class="self-link" href="#index-defined-here"></a></h3>
   <ul class="index">
-   <li><a href="#odrl-compliance-report">ODRL Compliance Report</a><span>, in § 1.1</span>
-   <li><a href="#odrl-evaluator">ODRL Evaluator</a><span>, in § 1.1</span>
-   <li><a href="#state-of-the-world">State of the World</a><span>, in § 1.1</span>
+   <li><a href="#compliance-report">ODRL Compliance Report</a><span>, in § 1.1</span>
+   <li><a href="#evaluator">ODRL Evaluator</a><span>, in § 1.1</span>
+   <li><a href="#sotw-dfn">State of the World</a><span>, in § 1.1</span>
   </ul>
   <h2 class="no-num no-ref heading settled" id="references"><span class="content">References</span><a class="self-link" href="#references"></a></h2>
   <h3 class="no-num no-ref heading settled" id="normative"><span class="content">Normative References</span><a class="self-link" href="#normative"></a></h3>
@@ -2626,9 +2650,9 @@ function parseHTML(markup) {
 "use strict";
 {
 let dfnPanelData = {
-"odrl-compliance-report": {"dfnID":"odrl-compliance-report","dfnText":"ODRL Compliance Report","external":false,"refSections":[],"url":"#odrl-compliance-report"},
-"odrl-evaluator": {"dfnID":"odrl-evaluator","dfnText":"ODRL Evaluator","external":false,"refSections":[],"url":"#odrl-evaluator"},
-"state-of-the-world": {"dfnID":"state-of-the-world","dfnText":"State of the World","external":false,"refSections":[],"url":"#state-of-the-world"},
+"compliance-report": {"dfnID":"compliance-report","dfnText":"ODRL Compliance Report","external":false,"refSections":[{"refs":[{"id":"ref-for-compliance-report"}],"title":"2. State of the World Representation"}],"url":"#compliance-report"},
+"evaluator": {"dfnID":"evaluator","dfnText":"ODRL Evaluator","external":false,"refSections":[],"url":"#evaluator"},
+"sotw-dfn": {"dfnID":"sotw-dfn","dfnText":"State of the World","external":false,"refSections":[],"url":"#sotw-dfn"},
 };
 
 document.addEventListener("DOMContentLoaded", ()=>{
