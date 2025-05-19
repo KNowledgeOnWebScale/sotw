@@ -57,15 +57,15 @@ State of the World Representation {#sotw-representation}
 
 Minimal set of information that needs to be represented in the SotW and existing terms that can be reused to represent it:
 
-- current time: [dcterms:issued](http://purl.org/dc/terms/issued)
+- **current time**: [dcterms:issued](http://purl.org/dc/terms/issued)
 
 Example: <code>ex:currentTime dct:issued "2024-01-01T00:00:00"^^xsd:dateTime .</code>
 
-- location: [DPV's location](https://w3id.org/dpv/loc) extension models locations based on the [ISO 3166](https://en.wikipedia.org/wiki/ISO_3166) and [UN M49](https://unstats.un.org/unsd/methodology/m49) standards.
+- **location**: [DPV's location](https://w3id.org/dpv/loc) extension models locations based on the [ISO 3166](https://en.wikipedia.org/wiki/ISO_3166) and [UN M49](https://unstats.un.org/unsd/methodology/m49) standards.
 
 Example: <code>ex:location dpv:hasLocation loc:BE .</code>
 
-- asset/party collections: [odrl:partOf](http://www.w3.org/ns/odrl/2/partOf)
+- **asset/party collections**: [odrl:partOf](http://www.w3.org/ns/odrl/2/partOf)
 
 Example:
 <code>
@@ -75,7 +75,7 @@ Example:
     </pre>
 </code>
 
-- performed actions: extracted from existing [Compliance Reports](#compliance-report)
+- **performed actions**: extracted from existing [Compliance Reports](#compliance-report)
 
 Example:
 <code>

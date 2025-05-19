@@ -1490,7 +1490,7 @@ Possible extra rowspan handling
 </style>
   <meta content="Bikeshed version b25686b9f, updated Fri Mar 14 14:15:20 2025 -0700" name="generator">
   <link href="https://w3id.org/force/sotw" rel="canonical">
-  <meta content="bdacefcd16ed8cb849bb72c7ef65fd6c15662629" name="revision">
+  <meta content="a3f8e5488a1454ea3a4485aefc81eef88c77e6cd" name="revision">
   <meta content="dark light" name="color-scheme">
 <style>/* Boilerplate: style-autolinks */
 .css.css, .property.property, .descriptor.descriptor {
@@ -2206,17 +2206,17 @@ Mention ODRL <a data-link-type="biblio" href="#biblio-odrl-model" title="ODRL In
    <p>Minimal set of information that needs to be represented in the SotW and existing terms that can be reused to represent it:</p>
    <ul>
     <li data-md>
-     <p>current time: <a href="http://purl.org/dc/terms/issued">dcterms:issued</a></p>
+     <p><strong>current time</strong>: <a href="http://purl.org/dc/terms/issued">dcterms:issued</a></p>
    </ul>
    <p>Example: <code>ex:currentTime dct:issued "2024-01-01T00:00:00"^^xsd:dateTime .</code></p>
    <ul>
     <li data-md>
-     <p>location: <a href="https://w3id.org/dpv/loc">DPV’s location</a> extension models locations based on the <a href="https://en.wikipedia.org/wiki/ISO_3166">ISO 3166</a> and <a href="https://unstats.un.org/unsd/methodology/m49">UN M49</a> standards.</p>
+     <p><strong>location</strong>: <a href="https://w3id.org/dpv/loc">DPV’s location</a> extension models locations based on the <a href="https://en.wikipedia.org/wiki/ISO_3166">ISO 3166</a> and <a href="https://unstats.un.org/unsd/methodology/m49">UN M49</a> standards.</p>
    </ul>
    <p>Example: <code>ex:location dpv:hasLocation loc:BE .</code></p>
    <ul>
     <li data-md>
-     <p>asset/party collections: <a href="http://www.w3.org/ns/odrl/2/partOf">odrl:partOf</a></p>
+     <p><strong>asset/party collections</strong>: <a href="http://www.w3.org/ns/odrl/2/partOf">odrl:partOf</a></p>
    </ul>
    <p>Example: <code></code></p>
    <code> <pre>ex:asset odrl:partOf ex:assetCollection .
@@ -2225,7 +2225,7 @@ ex:alice odrl:partOf ex:partyIdentifier.
    <p><code></code></p>
    <ul>
     <li data-md>
-     <p>performed actions: extracted from existing <a href="#compliance-report" id="ref-for-compliance-report">Compliance Reports</a></p>
+     <p><strong>performed actions</strong>: extracted from existing <a href="#compliance-report" id="ref-for-compliance-report">Compliance Reports</a></p>
    </ul>
    <p>Example: <code></code></p>
    <code> <pre>ex:policyReport a report:PolicyReport ;
