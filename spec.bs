@@ -33,19 +33,58 @@ Repository: https://github.com/KNowledgeOnWebScale/sotw
 </pre>
 
 Introd­uction {#introduction}
-=====================
+============================
 TODO: write full text
-Mention ODRL
-[[!ODRL-model]] [[!odrl-vocab]]
+Mention ODRL [[!ODRL-model]] [[!odrl-vocab]]
 
 Formal Semantics spec [[!odrl-formal-semantics]]
 
 ## Terminology ## {#terminology}
 
-TODO
+<dl>
+  <dt><dfn>ODRL Compliance Report</dfn></dt>
+  <dd>A vocabulary that is used to elaborate the result of an evaluation of an ODRL Policy, (optionally) ODRL Request and the State of the World. It elaborates not only whether a rule from a policy is active, but also why.</dd>
+
+  <dt><dfn>ODRL Evaluator</dfn></dt>
+  <dd>A system that determines whether the Rules of an ODRL Policy expression have meet their intended action performance.</dd>
+
+  <dt><dfn>State of the World</dfn></dt>
+  <dd>A set of knowledge representing real-world information aiding the evaluation of ODRL Policies.</dd>
+</dl>
+
+State of the World Representation {#sotw-representation}
+========================================================
+
+Minimal set of information that needs to be represented in the SotW and existing terms that can be reused to represent it:
+
+- current time: <a href="http://purl.org/dc/terms/issued">dcterms:issued</a>
+
+Example: <code>ex:currentTime dct:issued "2024-01-01T00:00:00"^^xsd:dateTime .</code>
+
+- location: <a href="https://w3id.org/dpv/loc">DPV's location</a> extension models locations based on the <a href="https://en.wikipedia.org/wiki/ISO_3166">ISO 3166</a> and <a href="https://unstats.un.org/unsd/methodology/m49">UN M49</a> standards.
+
+Example: <code>ex:location dpv:hasLocation loc:BE .</code>
+
+- asset/party collections: <a href="http://www.w3.org/ns/odrl/2/partOf">odrl:partOf</a>
+
+Example: <code>ex:asset odrl:partOf ex:assetCollection .</code>
+
+Note: Should we be explicit about the context on which this SotW is valid?
+First thought to make this happen is to model SotW as a concept and have properties to connect an instance of SotW with
+contextual information that describes that SotW.
+Example:
+<code>
+    <pre>
+    ex:sotw a sotw:SotW ;
+        sotw:currentTime ex:currentTime ;
+        sotw:location ex:location ;
+        sotw:assetCollection ex:assetCollection ;
+        ...
+    </pre>
+</code>
 
 Supporting Materials {#supporting-materials}
-=====================
+============================================
 
 - FORCE: https://w3id.org/force/
 - ODRL Compliance Report: https://w3id.org/force/compliance-report
@@ -55,13 +94,16 @@ Supporting Materials {#supporting-materials}
 - github repository for an ODRL Evaluator: [https://w3id.org/force/evaluator](https://w3id.org/force/evaluator)
 
 Namespaces {#namespaces}
-=====================
+========================
 
 Commonly used namespace prefixes used in this specification:
 ```turtle
-@prefix dcterms:    <http://purl.org/dc/terms/> .
-@prefix odrl:   <http://www.w3.org/ns/odrl/2/>.
-@prefix report: <https://w3id.org/force/compliance-report#>
-@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix dpv:     <https://w3id.org/dpv#> .
+@prefix ex:      <http://example.org/> .
+@prefix loc:     <https://w3id.org/dpv/loc#> .
+@prefix odrl:    <http://www.w3.org/ns/odrl/2/>.
+@prefix report:  <https://w3id.org/force/compliance-report#>
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
 ```
