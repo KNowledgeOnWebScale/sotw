@@ -1,7 +1,7 @@
 <!doctype html><html lang="en">
  <head>
   <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-  <title>State of the World for Open Digital Rights Language (ODRL) Evaluator</title>
+  <title>Contextual Inputs for ODRL Evaluators</title>
   <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
 <style data-fill-with="stylesheet">/******************************************************************************
  *                   Style sheet for the W3C specifications                   *
@@ -1490,7 +1490,7 @@ Possible extra rowspan handling
 </style>
   <meta content="Bikeshed version b25686b9f, updated Fri Mar 14 14:15:20 2025 -0700" name="generator">
   <link href="https://w3id.org/force/sotw" rel="canonical">
-  <meta content="8c319e0ee2381904234ae36014f49df473c88420" name="revision">
+  <meta content="92d8e593ef3378db8748eb60cb309bd3b40d8ff2" name="revision">
   <meta content="dark light" name="color-scheme">
 <style>/* Boilerplate: style-autolinks */
 .css.css, .property.property, .descriptor.descriptor {
@@ -2138,8 +2138,8 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
  <body class="h-entry">
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://knows.idlab.ugent.be/"> <img alt="KNoWS" height="48" src="logo.png"> </a></p>
-   <h1 class="p-name no-ref" id="title">State of the World for Open Digital Rights Language (ODRL) Evaluator</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="profile-and-date"><span class="content">Living Document, <time class="dt-updated" datetime="2025-05-19">19 May 2025</time></span></h2>
+   <h1 class="p-name no-ref" id="title">Contextual Inputs for ODRL Evaluators</h1>
+   <h2 class="no-num no-toc no-ref heading settled" id="profile-and-date"><span class="content">Living Document, <time class="dt-updated" datetime="2025-08-15">15 August 2025</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -2161,7 +2161,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   </div>
   <div class="p-summary" data-fill-with="abstract">
    <h2 class="no-num no-toc no-ref heading settled" id="abstract"><span class="content">Abstract</span></h2>
-   <p>TODO</p>
+   <p>This document describes a specification and vocabulary with terms to describe evaluation requests and the state of the world, which, in conjunction with policies, are necessary inputs for ODRL evaluators to assess which rules are active and which prohibitions and obligations have been violated or fulfilled.</p>
   </div>
   <div data-fill-with="at-risk"></div>
   <nav data-fill-with="table-of-contents" id="toc">
@@ -2172,9 +2172,10 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <ol class="toc">
       <li><a href="#terminology"><span class="secno">1.1</span> <span class="content">Terminology</span></a>
      </ol>
-    <li><a href="#sotw-representation"><span class="secno">2</span> <span class="content">State of the World Representation</span></a>
-    <li><a href="#supporting-materials"><span class="secno">3</span> <span class="content">Supporting Materials</span></a>
-    <li><a href="#namespaces"><span class="secno">4</span> <span class="content">Namespaces</span></a>
+    <li><a href="#SotW"><span class="secno">2</span> <span class="content">State of the World</span></a>
+    <li><a href="#EvaluationRequest"><span class="secno">3</span> <span class="content">Evaluation Request</span></a>
+    <li><a href="#supporting-materials"><span class="secno">4</span> <span class="content">Supporting Materials</span></a>
+    <li><a href="#namespaces"><span class="secno">5</span> <span class="content">Namespaces</span></a>
     <li><a href="#conformance"><span class="secno"></span> <span class="content"> Conformance</span></a>
     <li>
      <a href="#index"><span class="secno"></span> <span class="content">Index</span></a>
@@ -2190,9 +2191,22 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   </nav>
   <main>
    <h2 class="heading settled" data-level="1" id="introduction"><span class="secno">1. </span><span class="content">Introd­uction</span><a class="self-link" href="#introduction"></a></h2>
-    TODO: write full text
-Mention ODRL <a data-link-type="biblio" href="#biblio-odrl-model" title="ODRL Information Model 2.2">[ODRL-model]</a> <a data-link-type="biblio" href="#biblio-odrl-vocab" title="ODRL Vocabulary &amp; Expression 2.2">[odrl-vocab]</a> 
-   <p>Formal Semantics spec <a data-link-type="biblio" href="#biblio-odrl-formal-semantics" title="ODRL Formal Semantics">[odrl-formal-semantics]</a></p>
+   <p>The Open Digital Rights Language (ODRL) is a W3C standard for policy expression.
+It is composed by two Recommendations:</p>
+   <ul>
+    <li data-md>
+     <p>A model <a data-link-type="biblio" href="#biblio-odrl-model" title="ODRL Information Model 2.2">[ODRL-model]</a>, and</p>
+    <li data-md>
+     <p>A vocabulary <a data-link-type="biblio" href="#biblio-odrl-vocab" title="ODRL Vocabulary &amp; Expression 2.2">[odrl-vocab]</a></p>
+   </ul>
+   <p>which can be used to represent rules over the usage of digital assets.</p>
+   <p>The Recommendations only standardised the representation of policies, leaving their enforcement out of scope.
+As such, a recent effort is being led by the W3C ODRL CG to create an ODRL formal semantics specification <a data-link-type="biblio" href="#biblio-odrl-formal-semantics" title="ODRL Formal Semantics">[odrl-formal-semantics]</a>,
+with the goal of specifying "the expected behaviour of an ODRL Evaluator, 
+a piece of software that performs computations based on a set of policies, a request and a certain state of the world."</p>
+   <p>In this context,
+this specification provides a vocabulary to represent the necessary inputs of an <a href="#evaluator" id="ref-for-evaluator">Evaluator</a>,
+which are not standardised in ODRL, i.e., the <a href="#sotw-dfn" id="ref-for-sotw-dfn">State of the World (SotW)</a> and the <a href="#er-dfn" id="ref-for-er-dfn">Evaluation Request</a>.</p>
    <h3 class="heading settled" data-level="1.1" id="terminology"><span class="secno">1.1. </span><span class="content">Terminology</span><a class="self-link" href="#terminology"></a></h3>
    <dl>
     <dt><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="compliance-report">ODRL Compliance Report</dfn>
@@ -2200,60 +2214,77 @@ Mention ODRL <a data-link-type="biblio" href="#biblio-odrl-model" title="ODRL In
     <dt><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="evaluator">ODRL Evaluator</dfn>
     <dd>A system that determines whether the Rules of an ODRL Policy expression have meet their intended action performance.
     <dt><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="sotw-dfn">State of the World</dfn>
-    <dd>A set of knowledge representing real-world information aiding the evaluation of ODRL Policies.
+    <dd>Knowledge representing real-world information aiding the evaluation of ODRL Policies.
+    <dt><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="er-dfn">Evaluation Request</dfn>
+    <dd>Formal description of a requested action by an assignee on a target asset, which can be enriched with further contextual information.
    </dl>
-   <h2 class="heading settled" data-level="2" id="sotw-representation"><span class="secno">2. </span><span class="content">State of the World Representation</span><a class="self-link" href="#sotw-representation"></a></h2>
-   <p>Minimal set of information that needs to be represented in the SotW and existing terms that can be reused to represent it:</p>
+   <h2 class="heading settled" data-level="2" id="SotW"><span class="secno">2. </span><span class="content">State of the World</span><a class="self-link" href="#SotW"></a></h2>
+   <p>The ODRL Evaluator requires a formal representation of the state of the world. The state of the world specifies knowledge representing real-world information that aids the evaluation of ODRL Policies. For example, a certain state of the world may include the current date and time, the location of agents, or the history of performed actions.</p>
+   <p>This document aims to provide a formal representation for the state of the world concepts that are necessary to evaluate ODRL policies, without forcing the usage of existing vocabularies, e.g., country codes can be modelled using the ISO 3166 and UN M49 standards. RDF triples to represent the state of the world may be generated as observations from the world generated by third parties or by the ODRL Evaluator itself.</p>
+   <p>As such, in this document, we aim to provide a minimal set of information that needs to be represented in the state of the world and respective definitions, which will be formally represented in an RDF vocabulary:</p>
    <ul>
     <li data-md>
-     <p><strong>current time</strong>: <a href="http://purl.org/dc/terms/issued">dcterms:issued</a></p>
+     <p>SotW: Knowledge representing real-world information aiding the evaluation of ODRL Policies;</p>
+    <li data-md>
+     <p>currentTime: Denotes the current time of the state of the world;</p>
+    <li data-md>
+     <p>currentLocation: Denotes the current location of an ODRL party;</p>
+    <li data-md>
+     <p>assetCollection: Denotes an asset that is part of an ODRL asset collection;</p>
+    <li data-md>
+     <p>partyCollection: Denotes a party that is part of a ODRL party collection;</p>
+    <li data-md>
+     <p>existingReport: Denotes existing reports from previously performed ODRL evaluations, i.e., to get history of attempted and performed actions;</p>
+    <li data-md>
+     <p>count: Denotes the amount of times a rule has been exercised;</p>
+    <li data-md>
+     <p>event: Denotes information about an event that has occurred, e.g., when it has occurred;</p>
+    <li data-md>
+     <p>accumulatedTime: Denotes an accumulated amount of time a rule has been exercised;</p>
+    <li data-md>
+     <p>recipient: Denotes information about a recipient of a rule that has been exercised;</p>
+    <li data-md>
+     <p>paidAmount: Denotes information about a performed financial payment;</p>
    </ul>
-   <p>Example: <code>ex:currentTime dct:issued "2024-01-01T00:00:00"^^xsd:dateTime .</code></p>
+<pre class="language-turtle highlight"><c- nn>ex</c-><c- p>:</c-><c- f>sotw</c-> <c- b>a</c-> <c- nn>sotw</c-><c- p>:</c-><c- f>SotW</c-> <c- p>;</c->
+    <c- nn>sotw</c-><c- p>:</c-><c- f>currentTime</c-> <c- nn>ex</c-><c- p>:</c-><c- f>currentTime</c-> <c- p>;</c->
+    <c- nn>sotw</c-><c- p>:</c-><c- f>currentLocation</c-> <c- nn>ex</c-><c- p>:</c-><c- f>location</c-> <c- p>;</c->
+    <c- nn>sotw</c-><c- p>:</c-><c- f>assetCollection</c-> <c- nn>ex</c-><c- p>:</c-><c- f>asset</c-> <c- p>;</c->
+    <c- nn>sotw</c-><c- p>:</c-><c- f>partyCollection</c-> <c- nn>ex</c-><c- p>:</c-><c- f>party</c-> <c- p>;</c->
+    <c- nn>sotw</c-><c- p>:</c-><c- f>existingReport</c-> <c- nn>ex</c-><c- p>:</c-><c- f>report</c-> <c- p>;</c->
+    <c- nn>sotw</c-><c- p>:</c-><c- f>count</c-> <c- nn>ex</c-><c- p>:</c-><c- f>count</c-> <c- p>;</c->
+    <c- nn>sotw</c-><c- p>:</c-><c- f>event</c-> <c- nn>ex</c-><c- p>:</c-><c- f>event</c-> <c- p>;</c->
+    <c- nn>sotw</c-><c- p>:</c-><c- f>accumulatedTime</c-> <c- nn>ex</c-><c- p>:</c-><c- f>accumulatedTime</c-> <c- p>;</c->
+    <c- nn>sotw</c-><c- p>:</c-><c- f>recipient</c-> <c- nn>ex</c-><c- p>:</c-><c- f>recipient</c-> <c- p>;</c->
+    <c- nn>sotw</c-><c- p>:</c-><c- f>paidAmount</c-> <c- nn>ex</c-><c- p>:</c-><c- f>paidAmount</c-> <c- p>.</c->
+</pre>
+   <h2 class="heading settled" data-level="3" id="EvaluationRequest"><span class="secno">3. </span><span class="content">Evaluation Request</span><a class="self-link" href="#EvaluationRequest"></a></h2>
+   <p>An ODRL Evaluator requires an Evaluation Request as input. An Evaluation Request represents a formal description of a requested action. In cases where a request is not being made, e.g., during a policy monitoring scenario, an empty Evaluation Request should be provided as input to the ODRL Evaluator.</p>
+   <p>The Evaluation Request MUST contain the following properties:</p>
    <ul>
     <li data-md>
-     <p><strong>location</strong>: <a href="https://w3id.org/dpv/loc">DPV’s location</a> extension models locations based on the <a href="https://en.wikipedia.org/wiki/ISO_3166">ISO 3166</a> and <a href="https://unstats.un.org/unsd/methodology/m49">UN M49</a> standards.</p>
-   </ul>
-   <p>Example: <code>ex:location dpv:hasLocation loc:BE .</code></p>
-   <ul>
+     <p>dcterms:issued: The time of the request.</p>
     <li data-md>
-     <p><strong>asset/party collections</strong>: <a href="http://www.w3.org/ns/odrl/2/partOf">odrl:partOf</a></p>
-   </ul>
-   <p>Example: <code></code></p>
-   <code> <pre>ex:asset odrl:partOf ex:assetCollection .
-ex:alice odrl:partOf ex:partyIdentifier.
-</pre></code>
-   <p><code></code></p>
-   <ul>
+     <p>sotw:requestedAction: The action to be evaluated (e.g., odrl:use, odrl:read, odrl:modify).</p>
     <li data-md>
-     <p><strong>performed actions</strong>: extracted from existing <a href="#compliance-report" id="ref-for-compliance-report">Compliance Reports</a></p>
+     <p>sotw:requestingParty: The party (e.g., person or organization) requesting the action.</p>
+    <li data-md>
+     <p>sotw:requestedTarget: The asset (e.g., file, document, data, service) on which the action is to be performed.</p>
    </ul>
-   <p>Example: <code></code></p>
-   <code> <pre>ex:policyReport a report:PolicyReport ;
-    dcterms:created "2024-02-12T11:20:10.999Z"^^xsd:dateTime ;
-    report:policy ex:policy ;
-    report:ruleReport ex:dutyReport .
-ex:dutyReport a report:DutyReport ;
-    report:attemptState report:Attempted ;
-    report:rule ex:duty ;
-    report:performanceState report:Performed ;
-    report:deonticState report:Fulfilled .
-ex:duty a odrl:Duty ;
-    odrl:action odrl:compensate ;
-    odrl:assignee ex:alice .
-</pre></code>
-   <p><code></code></p>
-   <p class="note" role="note"><span class="marker">Note:</span> Should we be explicit about the context on which this SotW is valid?
-First thought to make this happen is to model SotW as a concept and have properties to connect an instance of SotW with
-contextual information that describes that SotW.
-Example: <code></code></p>
-   <code> <pre>ex:sotw a sotw:SotW ;
-    sotw:currentTime ex:currentTime ;
-    sotw:location ex:location ;
-    sotw:assetCollection ex:assetCollection ;
-    ...
-</pre></code>
-   <p><code></code></p>
-   <h2 class="heading settled" data-level="3" id="supporting-materials"><span class="secno">3. </span><span class="content">Supporting Materials</span><a class="self-link" href="#supporting-materials"></a></h2>
+   <p>Additional contextual information can also be included in the Evaluation Request, e.g., a purpose for exercising the requested action. The sotw:context property MAY be used to associate an sotw:EvaluationRequest with ODRL constraints that include this additional contextual information.</p>
+<pre class="language-turtle highlight"><c- nn>ex</c-><c- p>:</c-><c- f>request</c-> <c- b>a</c-> <c- nn>sotw</c-><c- p>:</c-><c- f>EvaluationRequest</c-> <c- p>;</c->
+    <c- nn>dcterms</c-><c- p>:</c-><c- f>issued</c-> <c- s>"2024-02-12T11:20:10.999Z"</c-><c- p>^^</c-><c- nn>xsd</c-><c- p>:</c-><c- f>dateTime</c-> <c- p>;</c->
+    <c- nn>sotw</c-><c- p>:</c-><c- f>requestedAction</c-> <c- nn>odrl</c-><c- p>:</c-><c- f>translate</c-> <c- p>;</c->
+    <c- nn>sotw</c-><c- p>:</c-><c- f>requestingParty</c-> <c- nn>ex</c-><c- p>:</c-><c- f>alice</c-> <c- p>;</c->
+    <c- nn>sotw</c-><c- p>:</c-><c- f>requestedTarget</c-> <c- nn>ex</c-><c- p>:</c-><c- f>document-1234</c-> <c- p>;</c->
+    <c- nn>sotw</c-><c- p>:</c-><c- f>context</c-> <c- p>[</c->
+        <c- b>a</c-> <c- nn>odrl</c-><c- p>:</c-><c- f>Constraint</c-> <c- p>;</c->
+        <c- nn>odrl</c-><c- p>:</c-><c- f>leftOperand:</c-> <c- nn>odrl</c-><c- p>:</c-><c- f>language</c-> <c- p>;</c->
+        <c- nn>odrl</c-><c- p>:</c-><c- f>operator</c-> <c- nn>odrl</c-><c- p>:</c-><c- f>eq</c-> <c- p>;</c->
+        <c- nn>odrl</c-><c- p>:</c-><c- f>rightOperand</c-> <c- s>"fr"</c->
+    <c- p>]</c-> <c- p>.</c->
+</pre>
+   <h2 class="heading settled" data-level="4" id="supporting-materials"><span class="secno">4. </span><span class="content">Supporting Materials</span><a class="self-link" href="#supporting-materials"></a></h2>
    <ul>
     <li data-md>
      <p>FORCE: <a href="https://w3id.org/force">https://w3id.org/force</a></p>
@@ -2272,12 +2303,10 @@ Example: <code></code></p>
     <li data-md>
      <p>github repository for an ODRL Evaluator: <a href="https://w3id.org/force/evaluator">https://w3id.org/force/evaluator</a></p>
    </ul>
-   <h2 class="heading settled" data-level="4" id="namespaces"><span class="secno">4. </span><span class="content">Namespaces</span><a class="self-link" href="#namespaces"></a></h2>
+   <h2 class="heading settled" data-level="5" id="namespaces"><span class="secno">5. </span><span class="content">Namespaces</span><a class="self-link" href="#namespaces"></a></h2>
    <p>Commonly used namespace prefixes used in this specification:</p>
 <pre class="language-turtle highlight"><c- k>@prefix</c-> <c- nn>dcterms:</c-> <c- g>&lt;http://purl.org/dc/terms/></c-> <c- p>.</c->
-<c- k>@prefix</c-> <c- nn>dpv:</c->     <c- g>&lt;https://w3id.org/dpv#></c-> <c- p>.</c->
 <c- k>@prefix</c-> <c- nn>ex:</c->      <c- g>&lt;http://example.org/></c-> <c- p>.</c->
-<c- k>@prefix</c-> <c- nn>loc:</c->     <c- g>&lt;https://w3id.org/dpv/loc#></c-> <c- p>.</c->
 <c- k>@prefix</c-> <c- nn>odrl:</c->    <c- g>&lt;http://www.w3.org/ns/odrl/2/></c-> <c- p>.</c->
 <c- k>@prefix</c-> <c- nn>report:</c->  <c- g>&lt;https://w3id.org/force/compliance-report#></c-> <c- p>.</c->
 <c- k>@prefix</c-> <c- nn>sotw:</c->    <c- g>&lt;https://w3id.org/force/sotw#></c-> <c- p>.</c->
@@ -2434,6 +2463,7 @@ Example: <code></code></p>
   <h2 class="no-num no-ref heading settled" id="index"><span class="content">Index</span><a class="self-link" href="#index"></a></h2>
   <h3 class="no-num no-ref heading settled" id="index-defined-here"><span class="content">Terms defined by this specification</span><a class="self-link" href="#index-defined-here"></a></h3>
   <ul class="index">
+   <li><a href="#er-dfn">Evaluation Request</a><span>, in § 1.1</span>
    <li><a href="#compliance-report">ODRL Compliance Report</a><span>, in § 1.1</span>
    <li><a href="#evaluator">ODRL Evaluator</a><span>, in § 1.1</span>
    <li><a href="#sotw-dfn">State of the World</a><span>, in § 1.1</span>
@@ -2650,9 +2680,10 @@ function parseHTML(markup) {
 "use strict";
 {
 let dfnPanelData = {
-"compliance-report": {"dfnID":"compliance-report","dfnText":"ODRL Compliance Report","external":false,"refSections":[{"refs":[{"id":"ref-for-compliance-report"}],"title":"2. State of the World Representation"}],"url":"#compliance-report"},
-"evaluator": {"dfnID":"evaluator","dfnText":"ODRL Evaluator","external":false,"refSections":[],"url":"#evaluator"},
-"sotw-dfn": {"dfnID":"sotw-dfn","dfnText":"State of the World","external":false,"refSections":[],"url":"#sotw-dfn"},
+"compliance-report": {"dfnID":"compliance-report","dfnText":"ODRL Compliance Report","external":false,"refSections":[],"url":"#compliance-report"},
+"er-dfn": {"dfnID":"er-dfn","dfnText":"Evaluation Request","external":false,"refSections":[{"refs":[{"id":"ref-for-er-dfn"}],"title":"1. Introd\u00aduction"}],"url":"#er-dfn"},
+"evaluator": {"dfnID":"evaluator","dfnText":"ODRL Evaluator","external":false,"refSections":[{"refs":[{"id":"ref-for-evaluator"}],"title":"1. Introd\u00aduction"}],"url":"#evaluator"},
+"sotw-dfn": {"dfnID":"sotw-dfn","dfnText":"State of the World","external":false,"refSections":[{"refs":[{"id":"ref-for-sotw-dfn"}],"title":"1. Introd\u00aduction"}],"url":"#sotw-dfn"},
 };
 
 document.addEventListener("DOMContentLoaded", ()=>{
