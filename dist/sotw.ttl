@@ -1,0 +1,132 @@
+@prefix bibo:    <http://purl.org/ontology/bibo/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
+@prefix odrl:    <http://www.w3.org/ns/odrl/2/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix report:  <https://w3id.org/force/compliance-report#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix sotw:    <https://w3id.org/force/sotw#> .
+@prefix vann:    <http://purl.org/vocab/vann/> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# ---------------- Ontology Metadata ------------------ #
+
+<https://w3id.org/force/sotw> a owl:Ontology ;
+    dcterms:title "Contextual Inputs for ODRL Evaluators"@en ;
+    vann:preferredNamespacePrefix "sotw" ;
+    vann:preferredNamespaceUri "https://w3id.org/force/sotw#" ;
+    rdfs:label "Contextual Inputs for ODRL Evaluators"@en ;
+    owl:versionInfo "0.1" ;
+    # owl:versionIRI <https://w3id.org/force/sotw/0.1> ;
+    dcterms:created "2025-08-12"^^xsd:date ;
+    # dcterms:modified "2025-xx-xx"^^xsd:date ;
+    dcterms:issued "2025-08-12"^^xsd:date ;
+    dcterms:creator <https://solidweb.me/besteves4/profile/card#me>,
+        <https://pod.woutslabbinck.com/profile/card#me> ;
+    dcterms:publisher <https://data.knows.idlab.ugent.be/person/office/#> ;
+    dcterms:abstract "Vocabulary used to represent state of the world and evaluation requests, which are necessary inputs for ODRL evaluators."@en ;
+    dcterms:description "Vocabulary used to represent state of the world and evaluation requests, which are necessary inputs for ODRL evaluators."@en ;
+    rdfs:comment "This is the Turtle serialisation for the Contextual Inputs for ODRL Evaluators specification."@en ;
+    dcterms:bibliographicCitation "Cite this vocabulary as: Esteves, B., Slabbinck, W. (2025). Contextual Inputs for ODRL Evaluators specification (Version 0.1). https://doi.org/XXX"@en ;
+    bibo:doi "xxxxx"@en ;
+    # foaf:logo <https://github.com/SolidLabResearch/ODRL-Compliance-Report-Model/blob/main/img/Compliance%20Report%20Model.svg> ;
+    dcterms:source <http://www.w3.org/ns/odrl/2/>, <https://w3c.github.io/odrl/formal-semantics/> ;
+    dcterms:license <https://creativecommons.org/licenses/by-sa/4.0/> .
+
+### State of the World concepts ###
+
+sotw:SotW a rdfs:Class, owl:Class, skos:Concept ;
+    rdfs:isDefinedBy sotw: ;
+    rdfs:label "State of the World"@en ;
+    skos:definition "Knowledge representing real-world information aiding the evaluation of ODRL Policies"@en .
+
+sotw:currentTime a rdfs:Property, skos:Concept ;
+    rdfs:isDefinedBy sotw: ;
+    skos:definition "Denotes the current time of the state of the world"@en ;
+    rdfs:domain sotw:SotW ;
+    rdfs:range xsd:date, xsd:dateTime .
+
+sotw:currentLocation a rdfs:Property, skos:Concept ;
+    rdfs:isDefinedBy sotw: ;
+    skos:definition "Denotes the current location of an ODRL party"@en ;
+    rdfs:domain sotw:SotW .
+
+sotw:assetCollection a rdfs:Property, skos:Concept ;
+    rdfs:isDefinedBy sotw: ;
+    skos:definition "Denotes an asset that is part of an ODRL asset collection"@en ;
+    rdfs:domain sotw:SotW ;
+    rdfs:range odrl:Asset .
+
+sotw:partyCollection a rdfs:Property, skos:Concept ;
+    rdfs:isDefinedBy sotw: ;
+    skos:definition "Denotes a party that is part of a ODRL party collection"@en ;
+    rdfs:domain sotw:SotW ;
+    rdfs:range odrl:Party .
+
+sotw:existingReport a rdfs:Property, skos:Concept ;
+    rdfs:isDefinedBy sotw: ;
+    skos:definition "Denotes existing reports from previously performed ODRL evaluations"@en ;
+    skos:note "Previous reports can be used to get history of attempted and performed actions"@en ;
+    rdfs:domain sotw:SotW ;
+    rdfs:range report:PolicyReport .
+
+sotw:count a rdfs:Property, skos:Concept ;
+    rdfs:isDefinedBy sotw: ;
+    skos:definition "Denotes the amount of times a rule has been exercised"@en ;
+    rdfs:domain sotw:SotW .
+
+sotw:event a rdfs:Property, skos:Concept ;
+    rdfs:isDefinedBy sotw: ;
+    skos:definition "Denotes information about an event that has occurred, e.g., when it has occurred"@en ;
+    rdfs:domain sotw:SotW .
+
+sotw:accumulatedTime a rdfs:Property, skos:Concept ;
+    rdfs:isDefinedBy sotw: ;
+    skos:definition "Denotes an accumulated amount of time a rule has been exercised"@en ;
+    skos:note "The accumulated time value should be represented using an xsd:duration"@en ;
+    rdfs:domain sotw:SotW .
+
+sotw:recipient a rdfs:Property, skos:Concept ;
+    rdfs:isDefinedBy sotw: ;
+    skos:definition "Denotes information about a recipient of a rule that has been exercised"@en ;
+    rdfs:domain sotw:SotW .
+
+sotw:paidAmount a rdfs:Property, skos:Concept ;
+    rdfs:isDefinedBy sotw: ;
+    skos:definition "Denotes information about a performed financial payment"@en ;
+    rdfs:domain sotw:SotW ;
+    rdfs:range xsd:decimal .
+
+### Evaluation Request concepts ###
+
+sotw:EvaluationRequest a rdfs:Class, owl:Class, skos:Concept ;
+    rdfs:isDefinedBy sotw: ;
+    rdfs:label "Evaluation Request"@en ;
+    skos:definition "An Evaluation Request represents a formal description of a requested action by an assignee on a target asset, which can be enriched with further contextual information"@en .
+
+sotw:requestedAction a rdfs:Property, skos:Concept ;
+    rdfs:isDefinedBy sotw: ;
+    skos:definition "Denotes the requested action to be evaluated"@en ;
+    rdfs:domain sotw:EvaluationRequest ;
+    rdfs:range odrl:Action .
+
+sotw:requestingParty a rdfs:Property, skos:Concept ;
+    rdfs:isDefinedBy sotw: ;
+    skos:definition "Denotes the party requesting the action"@en ;
+    rdfs:domain sotw:EvaluationRequest ;
+    rdfs:range odrl:Party .
+
+sotw:requestedTarget a rdfs:Property, skos:Concept ;
+    rdfs:isDefinedBy sotw: ;
+    skos:definition "Denotes the asset on which the action is to be performed"@en ;
+    rdfs:domain sotw:EvaluationRequest ;
+    rdfs:range odrl:Asset .
+
+sotw:context a rdfs:Property, skos:Concept ;
+    rdfs:isDefinedBy sotw: ;
+    skos:definition "Denotes additional contextual information that MAY be included in the request to be evaluated"@en ;
+    skos:example "A request to translate an asset to a certain language or to use an asset for a certain purpose"@en ;
+    rdfs:domain sotw:EvaluationRequest ;
+    rdfs:range odrl:Constraint, odrl:LogicalConstraint .
