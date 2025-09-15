@@ -68,6 +68,20 @@ which are not standardised in ODRL, i.e., the [State of the World (SotW)](#sotw-
   <dd>Formal description of a requested action by an assignee on a target asset, which can be enriched with further contextual information.</dd>
 </dl>
 
+Namespaces {#namespaces}
+========================
+
+Commonly used namespace prefixes used in this specification:
+```turtle
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix ex:      <http://example.org/> .
+@prefix odrl:    <http://www.w3.org/ns/odrl/2/> .
+@prefix report:  <https://w3id.org/force/compliance-report#> .
+@prefix sotw:    <https://w3id.org/force/sotw#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+```
+
 State of the World {#SotW}
 ==========================
 
@@ -139,16 +153,3 @@ Supporting Materials {#supporting-materials}
     - repo: [https://w3id.org/force/test-suite/repo](https://w3id.org/force/test-suite/repo)
 - github repository for an ODRL Evaluator: [https://w3id.org/force/evaluator](https://w3id.org/force/evaluator)
 
-Namespaces {#namespaces}
-========================
-
-Commonly used namespace prefixes used in this specification:
-```turtle
-@prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix ex:      <http://example.org/> .
-@prefix odrl:    <http://www.w3.org/ns/odrl/2/> .
-@prefix report:  <https://w3id.org/force/compliance-report#> .
-@prefix sotw:    <https://w3id.org/force/sotw#> .
-@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
-```
