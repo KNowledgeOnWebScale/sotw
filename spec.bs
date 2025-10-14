@@ -68,8 +68,7 @@ which are not standardised in ODRL, i.e., the [State of the World (SotW)](#sotw-
   <dd>Formal description of a requested action by an assignee on a target asset, which can be enriched with further contextual information.</dd>
 </dl>
 
-Namespaces {#namespaces}
-========================
+## Namespaces ## {#namespaces}
 
 Commonly used namespace prefixes used in this specification:
 ```turtle
