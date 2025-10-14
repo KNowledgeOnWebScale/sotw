@@ -1490,7 +1490,7 @@ Possible extra rowspan handling
 </style>
   <meta content="Bikeshed version b25686b9f, updated Fri Mar 14 14:15:20 2025 -0700" name="generator">
   <link href="https://w3id.org/force/sotw" rel="canonical">
-  <meta content="0816cd2ecff7a73b449855f7a49ac7c93fc740f1" name="revision">
+  <meta content="a88f705db0f289760648d4abd278f86382f5a44d" name="revision">
   <meta content="dark light" name="color-scheme">
 <style>/* Boilerplate: style-autolinks */
 .css.css, .property.property, .descriptor.descriptor {
@@ -2256,6 +2256,10 @@ which are not standardised in ODRL, i.e., the <a href="#sotw-dfn" id="ref-for-so
     <li data-md>
      <p><code>paidAmount</code>: Denotes information about a performed financial payment;</p>
    </ul>
+   <figure id="sotw-model">
+     <img src="./sotw.svg"> 
+    <figcaption>Proposed terms to represent a State of the World.</figcaption>
+   </figure>
 <pre class="language-turtle highlight"><c- nn>ex</c-><c- p>:</c-><c- f>sotw</c-> <c- b>a</c-> <c- nn>sotw</c-><c- p>:</c-><c- f>SotW</c-> <c- p>;</c->
     <c- nn>sotw</c-><c- p>:</c-><c- f>currentTime</c-> <c- nn>ex</c-><c- p>:</c-><c- f>currentTime</c-> <c- p>;</c->
     <c- nn>sotw</c-><c- p>:</c-><c- f>currentLocation</c-> <c- nn>ex</c-><c- p>:</c-><c- f>location</c-> <c- p>;</c->
@@ -2282,6 +2286,10 @@ which are not standardised in ODRL, i.e., the <a href="#sotw-dfn" id="ref-for-so
      <p><code>requestedTarget</code>: The asset (e.g., file, document, data, service) on which the action is to be performed.</p>
    </ul>
    <p>Additional contextual information can also be included in the Evaluation Request, e.g., a purpose for exercising the requested action. The <code>context</code> property MAY be used to associate an <code>EvaluationRequest</code> with ODRL constraints that include this additional contextual information.</p>
+   <figure id="evaluation-request-model">
+     <img src="./evaluationrequest.svg"> 
+    <figcaption>Proposed terms to represent an Evaluation Request.</figcaption>
+   </figure>
 <pre class="language-turtle highlight"><c- nn>ex</c-><c- p>:</c-><c- f>request</c-> <c- b>a</c-> <c- nn>sotw</c-><c- p>:</c-><c- f>EvaluationRequest</c-> <c- p>;</c->
     <c- nn>dcterms</c-><c- p>:</c-><c- f>issued</c-> <c- s>"2024-02-12T11:20:10.999Z"</c-><c- p>^^</c-><c- nn>xsd</c-><c- p>:</c-><c- f>dateTime</c-> <c- p>;</c->
     <c- nn>sotw</c-><c- p>:</c-><c- f>requestedAction</c-> <c- nn>odrl</c-><c- p>:</c-><c- f>translate</c-> <c- p>;</c->

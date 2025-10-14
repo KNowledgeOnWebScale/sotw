@@ -101,6 +101,11 @@ As such, in this document, we aim to provide a minimal set of information that n
 - `recipient`: Denotes information about a recipient of a rule that has been exercised;
 - `paidAmount`: Denotes information about a performed financial payment;
 
+<figure id="sotw-model">
+<img src="./sotw.svg">
+<figcaption>Proposed terms to represent a State of the World.</figcaption>
+</figure>
+
 ```turtle
 ex:sotw a sotw:SotW ;
     sotw:currentTime ex:currentTime ;
@@ -127,6 +132,11 @@ The Evaluation Request MUST contain the following properties:
 - `requestedTarget`: The asset (e.g., file, document, data, service) on which the action is to be performed.
 
 Additional contextual information can also be included in the Evaluation Request, e.g., a purpose for exercising the requested action. The `context` property MAY be used to associate an `EvaluationRequest` with ODRL constraints that include this additional contextual information.
+
+<figure id="evaluation-request-model">
+<img src="./evaluationrequest.svg">
+<figcaption>Proposed terms to represent an Evaluation Request.</figcaption>
+</figure>
 
 ```turtle
 ex:request a sotw:EvaluationRequest ;
