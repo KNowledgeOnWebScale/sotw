@@ -1490,7 +1490,7 @@ Possible extra rowspan handling
 </style>
   <meta content="Bikeshed version b25686b9f, updated Fri Mar 14 14:15:20 2025 -0700" name="generator">
   <link href="https://w3id.org/force/sotw" rel="canonical">
-  <meta content="26aa18f66c525c7bba8ce5940cd204160b4109ed" name="revision">
+  <meta content="0816cd2ecff7a73b449855f7a49ac7c93fc740f1" name="revision">
   <meta content="dark light" name="color-scheme">
 <style>/* Boilerplate: style-autolinks */
 .css.css, .property.property, .descriptor.descriptor {
@@ -2234,27 +2234,27 @@ which are not standardised in ODRL, i.e., the <a href="#sotw-dfn" id="ref-for-so
    <p>As such, in this document, we aim to provide a minimal set of information that needs to be represented in the state of the world and respective definitions, which will be formally represented in an RDF vocabulary:</p>
    <ul>
     <li data-md>
-     <p>SotW: Knowledge representing real-world information aiding the evaluation of ODRL Policies;</p>
+     <p><code>SotW</code>: Knowledge representing real-world information aiding the evaluation of ODRL Policies;</p>
     <li data-md>
-     <p>currentTime: Denotes the current time of the state of the world;</p>
+     <p><code>currentTime</code>: Denotes the current time of the state of the world;</p>
     <li data-md>
-     <p>currentLocation: Denotes the current location of an ODRL party;</p>
+     <p><code>currentLocation</code>: Denotes the current location of an ODRL party;</p>
     <li data-md>
-     <p>assetCollection: Denotes an asset that is part of an ODRL asset collection;</p>
+     <p><code>assetCollection</code>: Denotes an asset that is part of an ODRL asset collection;</p>
     <li data-md>
-     <p>partyCollection: Denotes a party that is part of a ODRL party collection;</p>
+     <p><code>partyCollection</code>: Denotes a party that is part of a ODRL party collection;</p>
     <li data-md>
-     <p>existingReport: Denotes existing reports from previously performed ODRL evaluations, i.e., to get history of attempted and performed actions;</p>
+     <p><code>existingReport</code>: Denotes existing reports from previously performed ODRL evaluations, i.e., to get history of attempted and performed actions;</p>
     <li data-md>
-     <p>count: Denotes the amount of times a rule has been exercised;</p>
+     <p><code>count</code>: Denotes the amount of times a rule has been exercised;</p>
     <li data-md>
-     <p>event: Denotes information about an event that has occurred, e.g., when it has occurred;</p>
+     <p><code>event</code>: Denotes information about an event that has occurred, e.g., when it has occurred;</p>
     <li data-md>
-     <p>accumulatedTime: Denotes an accumulated amount of time a rule has been exercised;</p>
+     <p><code>accumulatedTime</code>: Denotes an accumulated amount of time a rule has been exercised;</p>
     <li data-md>
-     <p>recipient: Denotes information about a recipient of a rule that has been exercised;</p>
+     <p><code>recipient</code>: Denotes information about a recipient of a rule that has been exercised;</p>
     <li data-md>
-     <p>paidAmount: Denotes information about a performed financial payment;</p>
+     <p><code>paidAmount</code>: Denotes information about a performed financial payment;</p>
    </ul>
 <pre class="language-turtle highlight"><c- nn>ex</c-><c- p>:</c-><c- f>sotw</c-> <c- b>a</c-> <c- nn>sotw</c-><c- p>:</c-><c- f>SotW</c-> <c- p>;</c->
     <c- nn>sotw</c-><c- p>:</c-><c- f>currentTime</c-> <c- nn>ex</c-><c- p>:</c-><c- f>currentTime</c-> <c- p>;</c->
@@ -2273,15 +2273,15 @@ which are not standardised in ODRL, i.e., the <a href="#sotw-dfn" id="ref-for-so
    <p>The Evaluation Request MUST contain the following properties:</p>
    <ul>
     <li data-md>
-     <p>dcterms:issued: The time of the request.</p>
+     <p><code>dcterms:issued</code>: The time of the request.</p>
     <li data-md>
-     <p>sotw:requestedAction: The action to be evaluated (e.g., odrl:use, odrl:read, odrl:modify).</p>
+     <p><code>requestedAction</code>: The action to be evaluated (e.g., <code>odrl:use</code>, <code>odrl:read</code>, <code>odrl:modify</code>).</p>
     <li data-md>
-     <p>sotw:requestingParty: The party (e.g., person or organization) requesting the action.</p>
+     <p><code>requestingParty</code>: The party (e.g., person or organization) requesting the action.</p>
     <li data-md>
-     <p>sotw:requestedTarget: The asset (e.g., file, document, data, service) on which the action is to be performed.</p>
+     <p><code>requestedTarget</code>: The asset (e.g., file, document, data, service) on which the action is to be performed.</p>
    </ul>
-   <p>Additional contextual information can also be included in the Evaluation Request, e.g., a purpose for exercising the requested action. The sotw:context property MAY be used to associate an sotw:EvaluationRequest with ODRL constraints that include this additional contextual information.</p>
+   <p>Additional contextual information can also be included in the Evaluation Request, e.g., a purpose for exercising the requested action. The <code>context</code> property MAY be used to associate an <code>EvaluationRequest</code> with ODRL constraints that include this additional contextual information.</p>
 <pre class="language-turtle highlight"><c- nn>ex</c-><c- p>:</c-><c- f>request</c-> <c- b>a</c-> <c- nn>sotw</c-><c- p>:</c-><c- f>EvaluationRequest</c-> <c- p>;</c->
     <c- nn>dcterms</c-><c- p>:</c-><c- f>issued</c-> <c- s>"2024-02-12T11:20:10.999Z"</c-><c- p>^^</c-><c- nn>xsd</c-><c- p>:</c-><c- f>dateTime</c-> <c- p>;</c->
     <c- nn>sotw</c-><c- p>:</c-><c- f>requestedAction</c-> <c- nn>odrl</c-><c- p>:</c-><c- f>translate</c-> <c- p>;</c->
