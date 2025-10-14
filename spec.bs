@@ -137,7 +137,7 @@ ex:request a sotw:EvaluationRequest ;
     sotw:requestedTarget ex:document-1234 ;
     sotw:context [
         a odrl:Constraint ;
-        odrl:leftOperand: odrl:language ;
+        odrl:leftOperand odrl:language ;
         odrl:operator odrl:eq ;
         odrl:rightOperand "fr"
     ] .
