@@ -182,7 +182,126 @@ As such, in this document, we aim to provide a minimal set of information that n
 <figure id="sotw-model">
 <img src="./sotw.svg">
 <figcaption>Proposed vocabulary terms to represent a State of the World.</figcaption>
-</figure>
+</figure> 
+
+## Issues ## {#issues}
+
+<style>
+pre.issue {
+  white-space: pre-wrap;    /* Wrap long lines instead of scrolling */
+  word-wrap: break-word;    /* Break long words if needed */
+  overflow-x: visible;      /* Disable horizontal scrollbar */
+}
+</style>
+
+<pre class="issue" id="issue-1">
+`sotw:id` (from https://github.com/w3c/odrl/issues/135)
+
+Victor suggests having a `sotw:id` property
+```turtle
+ex:sotw a sotw:SotW ;                             
+    sotw:id <http://example.com/policy/state/C12> ;
+    ...
+```
+    - Beatriz doesn't agree: the `ex:sotw` should already be the ID, not need for duplicated info
+</pre>
+
+<pre class="issue" id="issue-2">
+Actions (from https://github.com/w3c/odrl/issues/135)
+
+1. Using prov-o for not instantaneous actions, e.g., watch a movie between 10:00 and 12:00, and derived actions, e.g., experience of watching the movie
+```turtle
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix :     <http://example.org/> .
+
+# --- Activity ---
+:watchingMovie a prov:Activity ;
+    rdfs:label "Watching the movie 'Inception'" ;
+    prov:startedAtTime "2025-10-15T10:00:00"^^xsd:dateTime ;
+    prov:endedAtTime "2025-10-15T12:00:00"^^xsd:dateTime ;
+    prov:used :theMovie ;
+    prov:wasAssociatedWith :theViewer ;
+    prov:generated :watchingExperience .
+
+# --- Input Entities ---
+:theMovie a prov:Entity .
+:theViewer a prov:Agent .
+
+# --- Output Entity (experience) ---
+:watchingExperience a prov:Entity ;
+    rdfs:label "Alice's experience of watching Inception" ;
+    prov:wasDerivedFrom :theMovie ;
+    prov:wasAttributedTo :theViewer ;
+    prov:generatedAtTime "2025-10-15T12:00:00"^^xsd:dateTime .
+```
+    - Beatriz comments: how does the evaluator know that the `:watchingMovie` corresponds to an `odrl:watch` action? same for associating the assignee with `:theViewer` and the asset with `:theMovie`
+
+2. Get history of attempted and performed actions
+    - Beatriz comments: the previous information is not enough to know if an action was actually attempted or performed. There's also no way to connect the action with the related rule, e.g., an action was performed because of a duty, so how does the evaluator know that the action was performed because of a certain rule or that someone just did the action? Compliance reports have this association
+```turtle
+ex:sotw a sotw:SotW ;
+    sotw:existingReport ex:report .
+
+ex:report a report:PolicyReport ;
+    dcterms:created "2024-02-12T11:20:10.999Z"^^xsd:dateTime ;
+    report:policy ex:policy ;
+    report:ruleReport ex:dutyReport .
+
+ex:dutyReport a report:DutyReport ;
+    report:rule ex:duty ;
+    report:activationState report:Active ;
+    report:performanceState report:Performed ;
+    report:deonticState report:Fulfilled .
+
+ex:duty a odrl:Duty ;
+    odrl:action odrl:compensate ;
+    odrl:assigner ex:partyB ;
+    odrl:assignee ex:partyA .
+```
+</pre>
+
+<pre class="issue" id="issue-3">
+Dynamic values, e.g., current time (from https://github.com/w3c/odrl/issues/135)
+
+Andrea proposes
+```turtle
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix party: <https://ex.org/party#> .
+@prefix ex:   <https://ex.org/> .
+@prefix st: <http://example.com/policy/state/>
+@prefix sotw: <https://ex.org/sotw#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+  st:C12 a sotw:SotW;                             
+   sotw:hasContextualData [
+           a sotw:StaticContextualData;
+           sotw:describesFeature sotw:IoTData ;
+           sotw:value "Closed"
+    ], [
+           a sotw:StaticContextualData;
+           sotw:describesFeature sotw:AuthorizationCredentials ;
+           sotw:value "XXXX" # whatever value here
+    ], [
+           a sotw:DynamicContextualData;
+           sotw:describesFeature sotw:TemporalData ;
+           sotw:expected xsd:dateTime 
+           # This instance could be even linked to a policy if needed, kind of declaring a variable
+    ];
+
+    sotw:action [                                      
+      a ex:Compensate;                                  
+      ex:payAmount "5.00"^^xsd:decimal;                 
+      odrl:payee party:sony;
+      dcterms:issued "2025-07-23T00:00:00Z"^^xsd:dateTime 
+    ] .
+```
+    - Beatriz comments: I like it, but I think then all information that could be in the sotw should be modelled as either static or dynamic, e.g., the `sotw:action` should be a `sotw:StaticContextualData`
+    - Beatriz comments: at some point the dynamic value should actually be instantiated for the evaluation, should we have a property for this?
+    - Beatriz comments: I agree with the extensibility, but there are data individuals that should be already in the model given that they are needed to evaluate constraints that are in the current standard. So, we definitely should have `sotw:DataFeature`s for the time, e.g., `TemporalData`, 
+</pre>
 
 Since we do not wish to force the usage of certain vocabularies or resources
 to represent certain state of the world concepts,

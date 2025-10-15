@@ -1490,8 +1490,15 @@ Possible extra rowspan handling
 </style>
   <meta content="Bikeshed version b25686b9f, updated Fri Mar 14 14:15:20 2025 -0700" name="generator">
   <link href="https://w3id.org/force/sotw" rel="canonical">
-  <meta content="efd6b1eb6a132b2ed05af5e2872ed84b1536fb82" name="revision">
+  <meta content="29c2973a48fe07a9993dcb02458f15a306e8803c" name="revision">
   <meta content="dark light" name="color-scheme">
+<style>
+pre.issue {
+  white-space: pre-wrap;    /* Wrap long lines instead of scrolling */
+  word-wrap: break-word;    /* Break long words if needed */
+  overflow-x: visible;      /* Disable horizontal scrollbar */
+}
+</style>
 <style>/* Boilerplate: style-autolinks */
 .css.css, .property.property, .descriptor.descriptor {
     color: var(--a-normal-text);
@@ -2148,6 +2155,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <dd><a href="_ORCHESTRATOR_PREVIOUS_BUILD_FULL_LINK_" rel="prev">_ORCHESTRATOR_PREVIOUS_BUILD_FULL_LINK_</a>
      <dt>Issue Tracking:
      <dd><a href="https://github.com/KNowledgeOnWebScale/sotw/issues/">GitHub</a>
+     <dd><a href="#issues-index">Inline In Spec</a>
      <dt class="editor">Editors:
      <dd class="editor p-author h-card vcard"><a class="p-name fn u-email email" href="mailto:beatriz.esteves@ugent.be">Beatriz Esteves</a> (<a class="p-org org" href="http://idlab.ugent.be/">Ghent University - imec</a>)
      <dd class="editor p-author h-card vcard"><a class="p-name fn u-email email" href="mailto:wout.slabbinck@ugent.be">Wout Slabbinck</a> (<a class="p-org org" href="http://idlab.ugent.be/">Ghent University - imec</a>)
@@ -2174,7 +2182,11 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
       <li><a href="#namespaces"><span class="secno">1.2</span> <span class="content">Namespaces</span></a>
      </ol>
     <li><a href="#EvaluationRequest"><span class="secno">2</span> <span class="content">Evaluation Request</span></a>
-    <li><a href="#SotW"><span class="secno">3</span> <span class="content">State of the World</span></a>
+    <li>
+     <a href="#SotW"><span class="secno">3</span> <span class="content">State of the World</span></a>
+     <ol class="toc">
+      <li><a href="#issues"><span class="secno">3.1</span> <span class="content">Issues</span></a>
+     </ol>
     <li><a href="#supporting-materials"><span class="secno">4</span> <span class="content">Supporting Materials</span></a>
     <li><a href="#conformance"><span class="secno"></span> <span class="content"> Conformance</span></a>
     <li>
@@ -2187,6 +2199,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <ol class="toc">
       <li><a href="#normative"><span class="secno"></span> <span class="content">Normative References</span></a>
      </ol>
+    <li><a href="#issues-index"><span class="secno"></span> <span class="content">Issues Index</span></a>
    </ol>
   </nav>
   <main>
@@ -2295,6 +2308,110 @@ ODRL evaluator to determine whether this request is permitted or not.</p>
      <img src="./sotw.svg"> 
     <figcaption>Proposed vocabulary terms to represent a State of the World.</figcaption>
    </figure>
+   <h3 class="heading settled" data-level="3.1" id="issues"><span class="secno">3.1. </span><span class="content">Issues</span><a class="self-link" href="#issues"></a></h3>
+<pre class="issue" id="issue-1"><a class="self-link" href="#issue-1"></a><code>sotw:id</code> (from https://github.com/w3c/odrl/issues/135)
+
+Victor suggests having a <code>sotw:id</code> property
+<pre class="language-turtle highlight">
+<c- nn>ex</c-><c- p>:</c-><c- f>sotw</c-> <c- b>a</c-> <c- nn>sotw</c-><c- p>:</c-><c- f>SotW</c-> <c- p>;</c->                             
+    <c- nn>sotw</c-><c- p>:</c-><c- f>id</c-> <c- g>&lt;http://example.com/policy/state/C12></c-> <c- p>;</c->
+    <c- p>...</c->
+</pre>
+    - Beatriz doesn’t agree: the <code>ex:sotw</code> should already be the ID, not need for duplicated info
+</pre>
+<pre class="issue" id="issue-2"><a class="self-link" href="#issue-2"></a>Actions (from https://github.com/w3c/odrl/issues/135)
+
+1. Using prov-o for not instantaneous actions, e.g., watch a movie between 10:00 and 12:00, and derived actions, e.g., experience of watching the movie
+<pre class="language-turtle highlight">
+<c- k>@prefix</c-> <c- nn>prov:</c-> <c- g>&lt;http://www.w3.org/ns/prov#></c-> <c- p>.</c->
+<c- k>@prefix</c-> <c- nn>xsd:</c->  <c- g>&lt;http://www.w3.org/2001/XMLSchema#></c-> <c- p>.</c->
+<c- k>@prefix</c-> <c- nn>rdfs:</c-> <c- g>&lt;http://www.w3.org/2000/01/rdf-schema#></c-> <c- p>.</c->
+<c- k>@prefix</c-> <c- nn>:</c->     <c- g>&lt;http://example.org/></c-> <c- p>.</c->
+
+<c- c># --- Activity ---</c->
+<c- p>:</c-><c- f>watchingMovie</c-> <c- b>a</c-> <c- nn>prov</c-><c- p>:</c-><c- f>Activity</c-> <c- p>;</c->
+    <c- nn>rdfs</c-><c- p>:</c-><c- f>label</c-> <c- s>"Watching the movie 'Inception'"</c-> <c- p>;</c->
+    <c- nn>prov</c-><c- p>:</c-><c- f>startedAtTime</c-> <c- s>"2025-10-15T10:00:00"</c-><c- p>^^</c-><c- nn>xsd</c-><c- p>:</c-><c- f>dateTime</c-> <c- p>;</c->
+    <c- nn>prov</c-><c- p>:</c-><c- f>endedAtTime</c-> <c- s>"2025-10-15T12:00:00"</c-><c- p>^^</c-><c- nn>xsd</c-><c- p>:</c-><c- f>dateTime</c-> <c- p>;</c->
+    <c- nn>prov</c-><c- p>:</c-><c- f>used</c-> <c- p>:</c-><c- f>theMovie</c-> <c- p>;</c->
+    <c- nn>prov</c-><c- p>:</c-><c- f>wasAssociatedWith</c-> <c- p>:</c-><c- f>theViewer</c-> <c- p>;</c->
+    <c- nn>prov</c-><c- p>:</c-><c- f>generated</c-> <c- p>:</c-><c- f>watchingExperience</c-> <c- p>.</c->
+
+<c- c># --- Input Entities ---</c->
+<c- p>:</c-><c- f>theMovie</c-> <c- b>a</c-> <c- nn>prov</c-><c- p>:</c-><c- f>Entity</c-> <c- p>.</c->
+<c- p>:</c-><c- f>theViewer</c-> <c- b>a</c-> <c- nn>prov</c-><c- p>:</c-><c- f>Agent</c-> <c- p>.</c->
+
+<c- c># --- Output Entity (experience) ---</c->
+<c- p>:</c-><c- f>watchingExperience</c-> <c- b>a</c-> <c- nn>prov</c-><c- p>:</c-><c- f>Entity</c-> <c- p>;</c->
+    <c- nn>rdfs</c-><c- p>:</c-><c- f>label</c-> <c- s>"Alice's experience of watching Inception"</c-> <c- p>;</c->
+    <c- nn>prov</c-><c- p>:</c-><c- f>wasDerivedFrom</c-> <c- p>:</c-><c- f>theMovie</c-> <c- p>;</c->
+    <c- nn>prov</c-><c- p>:</c-><c- f>wasAttributedTo</c-> <c- p>:</c-><c- f>theViewer</c-> <c- p>;</c->
+    <c- nn>prov</c-><c- p>:</c-><c- f>generatedAtTime</c-> <c- s>"2025-10-15T12:00:00"</c-><c- p>^^</c-><c- nn>xsd</c-><c- p>:</c-><c- f>dateTime</c-> <c- p>.</c->
+</pre>
+    - Beatriz comments: how does the evaluator know that the <code>:watchingMovie</code> corresponds to an <code>odrl:watch</code> action? same for associating the assignee with <code>:theViewer</code> and the asset with <code>:theMovie</code>
+
+2. Get history of attempted and performed actions
+    - Beatriz comments: the previous information is not enough to know if an action was actually attempted or performed. There’s also no way to connect the action with the related rule, e.g., an action was performed because of a duty, so how does the evaluator know that the action was performed because of a certain rule or that someone just did the action? Compliance reports have this association
+<pre class="language-turtle highlight">
+<c- nn>ex</c-><c- p>:</c-><c- f>sotw</c-> <c- b>a</c-> <c- nn>sotw</c-><c- p>:</c-><c- f>SotW</c-> <c- p>;</c->
+    <c- nn>sotw</c-><c- p>:</c-><c- f>existingReport</c-> <c- nn>ex</c-><c- p>:</c-><c- f>report</c-> <c- p>.</c->
+
+<c- nn>ex</c-><c- p>:</c-><c- f>report</c-> <c- b>a</c-> <c- nn>report</c-><c- p>:</c-><c- f>PolicyReport</c-> <c- p>;</c->
+    <c- nn>dcterms</c-><c- p>:</c-><c- f>created</c-> <c- s>"2024-02-12T11:20:10.999Z"</c-><c- p>^^</c-><c- nn>xsd</c-><c- p>:</c-><c- f>dateTime</c-> <c- p>;</c->
+    <c- nn>report</c-><c- p>:</c-><c- f>policy</c-> <c- nn>ex</c-><c- p>:</c-><c- f>policy</c-> <c- p>;</c->
+    <c- nn>report</c-><c- p>:</c-><c- f>ruleReport</c-> <c- nn>ex</c-><c- p>:</c-><c- f>dutyReport</c-> <c- p>.</c->
+
+<c- nn>ex</c-><c- p>:</c-><c- f>dutyReport</c-> <c- b>a</c-> <c- nn>report</c-><c- p>:</c-><c- f>DutyReport</c-> <c- p>;</c->
+    <c- nn>report</c-><c- p>:</c-><c- f>rule</c-> <c- nn>ex</c-><c- p>:</c-><c- f>duty</c-> <c- p>;</c->
+    <c- nn>report</c-><c- p>:</c-><c- f>activationState</c-> <c- nn>report</c-><c- p>:</c-><c- f>Active</c-> <c- p>;</c->
+    <c- nn>report</c-><c- p>:</c-><c- f>performanceState</c-> <c- nn>report</c-><c- p>:</c-><c- f>Performed</c-> <c- p>;</c->
+    <c- nn>report</c-><c- p>:</c-><c- f>deonticState</c-> <c- nn>report</c-><c- p>:</c-><c- f>Fulfilled</c-> <c- p>.</c->
+
+<c- nn>ex</c-><c- p>:</c-><c- f>duty</c-> <c- b>a</c-> <c- nn>odrl</c-><c- p>:</c-><c- f>Duty</c-> <c- p>;</c->
+    <c- nn>odrl</c-><c- p>:</c-><c- f>action</c-> <c- nn>odrl</c-><c- p>:</c-><c- f>compensate</c-> <c- p>;</c->
+    <c- nn>odrl</c-><c- p>:</c-><c- f>assigner</c-> <c- nn>ex</c-><c- p>:</c-><c- f>partyB</c-> <c- p>;</c->
+    <c- nn>odrl</c-><c- p>:</c-><c- f>assignee</c-> <c- nn>ex</c-><c- p>:</c-><c- f>partyA</c-> <c- p>.</c->
+</pre>
+</pre>
+<pre class="issue" id="issue-3"><a class="self-link" href="#issue-3"></a>Dynamic values, e.g., current time (from https://github.com/w3c/odrl/issues/135)
+
+Andrea proposes
+<pre class="language-turtle highlight">
+<c- k>@prefix</c-> <c- nn>odrl:</c-> <c- g>&lt;http://www.w3.org/ns/odrl/2/></c-> <c- p>.</c->
+<c- k>@prefix</c-> <c- nn>party:</c-> <c- g>&lt;https://ex.org/party#></c-> <c- p>.</c->
+<c- k>@prefix</c-> <c- nn>ex:</c->   <c- g>&lt;https://ex.org/></c-> <c- p>.</c->
+<c- k>@prefix</c-> <c- nn>st:</c-> <c- g>&lt;http://example.com/policy/state/></c->
+<c- k>@prefix</c-> <c- nn>sotw:</c-> <c- g>&lt;https://ex.org/sotw#></c-> <c- p>.</c->
+<c- k>@prefix</c-> <c- nn>dcterms:</c-> <c- g>&lt;http://purl.org/dc/terms/></c-> <c- p>.</c->
+<c- k>@prefix</c-> <c- nn>xsd:</c->     <c- g>&lt;http://www.w3.org/2001/XMLSchema#></c-> <c- p>.</c->
+
+  <c- nn>st</c-><c- p>:</c-><c- f>C12</c-> <c- b>a</c-> <c- nn>sotw</c-><c- p>:</c-><c- f>SotW</c-><c- p>;</c->                             
+   <c- nn>sotw</c-><c- p>:</c-><c- f>hasContextualData</c-> <c- p>[</c->
+           <c- b>a</c-> <c- nn>sotw</c-><c- p>:</c-><c- f>StaticContextualData</c-><c- p>;</c->
+           <c- nn>sotw</c-><c- p>:</c-><c- f>describesFeature</c-> <c- nn>sotw</c-><c- p>:</c-><c- f>IoTData</c-> <c- p>;</c->
+           <c- nn>sotw</c-><c- p>:</c-><c- f>value</c-> <c- s>"Closed"</c->
+    <c- p>],</c-> <c- p>[</c->
+           <c- b>a</c-> <c- nn>sotw</c-><c- p>:</c-><c- f>StaticContextualData</c-><c- p>;</c->
+           <c- nn>sotw</c-><c- p>:</c-><c- f>describesFeature</c-> <c- nn>sotw</c-><c- p>:</c-><c- f>AuthorizationCredentials</c-> <c- p>;</c->
+           <c- nn>sotw</c-><c- p>:</c-><c- f>value</c-> <c- s>"XXXX"</c-> <c- c># whatever value here</c->
+    <c- p>],</c-> <c- p>[</c->
+           <c- b>a</c-> <c- nn>sotw</c-><c- p>:</c-><c- f>DynamicContextualData</c-><c- p>;</c->
+           <c- nn>sotw</c-><c- p>:</c-><c- f>describesFeature</c-> <c- nn>sotw</c-><c- p>:</c-><c- f>TemporalData</c-> <c- p>;</c->
+           <c- nn>sotw</c-><c- p>:</c-><c- f>expected</c-> <c- nn>xsd</c-><c- p>:</c-><c- f>dateTime</c-> 
+           <c- c># This instance could be even linked to a policy if needed, kind of declaring a variable</c->
+    <c- p>];</c->
+
+    <c- nn>sotw</c-><c- p>:</c-><c- f>action</c-> <c- p>[</c->                                      
+      <c- b>a</c-> <c- nn>ex</c-><c- p>:</c-><c- f>Compensate</c-><c- p>;</c->                                  
+      <c- nn>ex</c-><c- p>:</c-><c- f>payAmount</c-> <c- s>"5.00"</c-><c- p>^^</c-><c- nn>xsd</c-><c- p>:</c-><c- f>decimal</c-><c- p>;</c->                 
+      <c- nn>odrl</c-><c- p>:</c-><c- f>payee</c-> <c- nn>party</c-><c- p>:</c-><c- f>sony</c-><c- p>;</c->
+      <c- nn>dcterms</c-><c- p>:</c-><c- f>issued</c-> <c- s>"2025-07-23T00:00:00Z"</c-><c- p>^^</c-><c- nn>xsd</c-><c- p>:</c-><c- f>dateTime</c-> 
+    <c- p>]</c-> <c- p>.</c->
+</pre>
+    - Beatriz comments: I like it, but I think then all information that could be in the sotw should be modelled as either static or dynamic, e.g., the <code>sotw:action</code> should be a <code>sotw:StaticContextualData</code>
+    - Beatriz comments: at some point the dynamic value should actually be instantiated for the evaluation, should we have a property for this?
+    - Beatriz comments: I agree with the extensibility, but there are data individuals that should be already in the model given that they are needed to evaluate constraints that are in the current standard. So, we definitely should have <code>sotw:DataFeature</code>s for the time, e.g., <code>TemporalData</code>, 
+</pre>
    <p>Since we do not wish to force the usage of certain vocabularies or resources
 to represent certain state of the world concepts,
 in particular for the specification of locations, recipients and events,
@@ -2566,6 +2683,112 @@ that it has a way to check whether the duty has actually been performed.</p>
    <dt id="biblio-un-m49">[UN-M49]
    <dd>Statistics Division of the United Nations Secretariat. <a href="https://unstats.un.org/unsd/methodology/m49"><cite>Standard country or area codes for statistical use (M49)</cite></a>. 1999. URL: <a href="https://unstats.un.org/unsd/methodology/m49">https://unstats.un.org/unsd/methodology/m49</a>
   </dl>
+  <h2 class="no-num no-ref heading settled" id="issues-index"><span class="content">Issues Index</span><a class="self-link" href="#issues-index"></a></h2>
+  <div style="counter-reset:issue">
+<pre class="issue"><code>sotw:id</code> (from https://github.com/w3c/odrl/issues/135)
+
+Victor suggests having a <code>sotw:id</code> property
+<pre class="language-turtle highlight">
+<c- nn>ex</c-><c- p>:</c-><c- f>sotw</c-> <c- b>a</c-> <c- nn>sotw</c-><c- p>:</c-><c- f>SotW</c-> <c- p>;</c->                             
+    <c- nn>sotw</c-><c- p>:</c-><c- f>id</c-> <c- g>&lt;http://example.com/policy/state/C12></c-> <c- p>;</c->
+    <c- p>...</c->
+</pre>
+    - Beatriz doesn’t agree: the <code>ex:sotw</code> should already be the ID, not need for duplicated info
+ <a class="issue-return" href="#issue-1" title="Jump to section">↵</a></pre>
+<pre class="issue">Actions (from https://github.com/w3c/odrl/issues/135)
+
+1. Using prov-o for not instantaneous actions, e.g., watch a movie between 10:00 and 12:00, and derived actions, e.g., experience of watching the movie
+<pre class="language-turtle highlight">
+<c- k>@prefix</c-> <c- nn>prov:</c-> <c- g>&lt;http://www.w3.org/ns/prov#></c-> <c- p>.</c->
+<c- k>@prefix</c-> <c- nn>xsd:</c->  <c- g>&lt;http://www.w3.org/2001/XMLSchema#></c-> <c- p>.</c->
+<c- k>@prefix</c-> <c- nn>rdfs:</c-> <c- g>&lt;http://www.w3.org/2000/01/rdf-schema#></c-> <c- p>.</c->
+<c- k>@prefix</c-> <c- nn>:</c->     <c- g>&lt;http://example.org/></c-> <c- p>.</c->
+
+<c- c># --- Activity ---</c->
+<c- p>:</c-><c- f>watchingMovie</c-> <c- b>a</c-> <c- nn>prov</c-><c- p>:</c-><c- f>Activity</c-> <c- p>;</c->
+    <c- nn>rdfs</c-><c- p>:</c-><c- f>label</c-> <c- s>"Watching the movie 'Inception'"</c-> <c- p>;</c->
+    <c- nn>prov</c-><c- p>:</c-><c- f>startedAtTime</c-> <c- s>"2025-10-15T10:00:00"</c-><c- p>^^</c-><c- nn>xsd</c-><c- p>:</c-><c- f>dateTime</c-> <c- p>;</c->
+    <c- nn>prov</c-><c- p>:</c-><c- f>endedAtTime</c-> <c- s>"2025-10-15T12:00:00"</c-><c- p>^^</c-><c- nn>xsd</c-><c- p>:</c-><c- f>dateTime</c-> <c- p>;</c->
+    <c- nn>prov</c-><c- p>:</c-><c- f>used</c-> <c- p>:</c-><c- f>theMovie</c-> <c- p>;</c->
+    <c- nn>prov</c-><c- p>:</c-><c- f>wasAssociatedWith</c-> <c- p>:</c-><c- f>theViewer</c-> <c- p>;</c->
+    <c- nn>prov</c-><c- p>:</c-><c- f>generated</c-> <c- p>:</c-><c- f>watchingExperience</c-> <c- p>.</c->
+
+<c- c># --- Input Entities ---</c->
+<c- p>:</c-><c- f>theMovie</c-> <c- b>a</c-> <c- nn>prov</c-><c- p>:</c-><c- f>Entity</c-> <c- p>.</c->
+<c- p>:</c-><c- f>theViewer</c-> <c- b>a</c-> <c- nn>prov</c-><c- p>:</c-><c- f>Agent</c-> <c- p>.</c->
+
+<c- c># --- Output Entity (experience) ---</c->
+<c- p>:</c-><c- f>watchingExperience</c-> <c- b>a</c-> <c- nn>prov</c-><c- p>:</c-><c- f>Entity</c-> <c- p>;</c->
+    <c- nn>rdfs</c-><c- p>:</c-><c- f>label</c-> <c- s>"Alice's experience of watching Inception"</c-> <c- p>;</c->
+    <c- nn>prov</c-><c- p>:</c-><c- f>wasDerivedFrom</c-> <c- p>:</c-><c- f>theMovie</c-> <c- p>;</c->
+    <c- nn>prov</c-><c- p>:</c-><c- f>wasAttributedTo</c-> <c- p>:</c-><c- f>theViewer</c-> <c- p>;</c->
+    <c- nn>prov</c-><c- p>:</c-><c- f>generatedAtTime</c-> <c- s>"2025-10-15T12:00:00"</c-><c- p>^^</c-><c- nn>xsd</c-><c- p>:</c-><c- f>dateTime</c-> <c- p>.</c->
+</pre>
+    - Beatriz comments: how does the evaluator know that the <code>:watchingMovie</code> corresponds to an <code>odrl:watch</code> action? same for associating the assignee with <code>:theViewer</code> and the asset with <code>:theMovie</code>
+
+2. Get history of attempted and performed actions
+    - Beatriz comments: the previous information is not enough to know if an action was actually attempted or performed. There’s also no way to connect the action with the related rule, e.g., an action was performed because of a duty, so how does the evaluator know that the action was performed because of a certain rule or that someone just did the action? Compliance reports have this association
+<pre class="language-turtle highlight">
+<c- nn>ex</c-><c- p>:</c-><c- f>sotw</c-> <c- b>a</c-> <c- nn>sotw</c-><c- p>:</c-><c- f>SotW</c-> <c- p>;</c->
+    <c- nn>sotw</c-><c- p>:</c-><c- f>existingReport</c-> <c- nn>ex</c-><c- p>:</c-><c- f>report</c-> <c- p>.</c->
+
+<c- nn>ex</c-><c- p>:</c-><c- f>report</c-> <c- b>a</c-> <c- nn>report</c-><c- p>:</c-><c- f>PolicyReport</c-> <c- p>;</c->
+    <c- nn>dcterms</c-><c- p>:</c-><c- f>created</c-> <c- s>"2024-02-12T11:20:10.999Z"</c-><c- p>^^</c-><c- nn>xsd</c-><c- p>:</c-><c- f>dateTime</c-> <c- p>;</c->
+    <c- nn>report</c-><c- p>:</c-><c- f>policy</c-> <c- nn>ex</c-><c- p>:</c-><c- f>policy</c-> <c- p>;</c->
+    <c- nn>report</c-><c- p>:</c-><c- f>ruleReport</c-> <c- nn>ex</c-><c- p>:</c-><c- f>dutyReport</c-> <c- p>.</c->
+
+<c- nn>ex</c-><c- p>:</c-><c- f>dutyReport</c-> <c- b>a</c-> <c- nn>report</c-><c- p>:</c-><c- f>DutyReport</c-> <c- p>;</c->
+    <c- nn>report</c-><c- p>:</c-><c- f>rule</c-> <c- nn>ex</c-><c- p>:</c-><c- f>duty</c-> <c- p>;</c->
+    <c- nn>report</c-><c- p>:</c-><c- f>activationState</c-> <c- nn>report</c-><c- p>:</c-><c- f>Active</c-> <c- p>;</c->
+    <c- nn>report</c-><c- p>:</c-><c- f>performanceState</c-> <c- nn>report</c-><c- p>:</c-><c- f>Performed</c-> <c- p>;</c->
+    <c- nn>report</c-><c- p>:</c-><c- f>deonticState</c-> <c- nn>report</c-><c- p>:</c-><c- f>Fulfilled</c-> <c- p>.</c->
+
+<c- nn>ex</c-><c- p>:</c-><c- f>duty</c-> <c- b>a</c-> <c- nn>odrl</c-><c- p>:</c-><c- f>Duty</c-> <c- p>;</c->
+    <c- nn>odrl</c-><c- p>:</c-><c- f>action</c-> <c- nn>odrl</c-><c- p>:</c-><c- f>compensate</c-> <c- p>;</c->
+    <c- nn>odrl</c-><c- p>:</c-><c- f>assigner</c-> <c- nn>ex</c-><c- p>:</c-><c- f>partyB</c-> <c- p>;</c->
+    <c- nn>odrl</c-><c- p>:</c-><c- f>assignee</c-> <c- nn>ex</c-><c- p>:</c-><c- f>partyA</c-> <c- p>.</c->
+</pre>
+ <a class="issue-return" href="#issue-2" title="Jump to section">↵</a></pre>
+<pre class="issue">Dynamic values, e.g., current time (from https://github.com/w3c/odrl/issues/135)
+
+Andrea proposes
+<pre class="language-turtle highlight">
+<c- k>@prefix</c-> <c- nn>odrl:</c-> <c- g>&lt;http://www.w3.org/ns/odrl/2/></c-> <c- p>.</c->
+<c- k>@prefix</c-> <c- nn>party:</c-> <c- g>&lt;https://ex.org/party#></c-> <c- p>.</c->
+<c- k>@prefix</c-> <c- nn>ex:</c->   <c- g>&lt;https://ex.org/></c-> <c- p>.</c->
+<c- k>@prefix</c-> <c- nn>st:</c-> <c- g>&lt;http://example.com/policy/state/></c->
+<c- k>@prefix</c-> <c- nn>sotw:</c-> <c- g>&lt;https://ex.org/sotw#></c-> <c- p>.</c->
+<c- k>@prefix</c-> <c- nn>dcterms:</c-> <c- g>&lt;http://purl.org/dc/terms/></c-> <c- p>.</c->
+<c- k>@prefix</c-> <c- nn>xsd:</c->     <c- g>&lt;http://www.w3.org/2001/XMLSchema#></c-> <c- p>.</c->
+
+  <c- nn>st</c-><c- p>:</c-><c- f>C12</c-> <c- b>a</c-> <c- nn>sotw</c-><c- p>:</c-><c- f>SotW</c-><c- p>;</c->                             
+   <c- nn>sotw</c-><c- p>:</c-><c- f>hasContextualData</c-> <c- p>[</c->
+           <c- b>a</c-> <c- nn>sotw</c-><c- p>:</c-><c- f>StaticContextualData</c-><c- p>;</c->
+           <c- nn>sotw</c-><c- p>:</c-><c- f>describesFeature</c-> <c- nn>sotw</c-><c- p>:</c-><c- f>IoTData</c-> <c- p>;</c->
+           <c- nn>sotw</c-><c- p>:</c-><c- f>value</c-> <c- s>"Closed"</c->
+    <c- p>],</c-> <c- p>[</c->
+           <c- b>a</c-> <c- nn>sotw</c-><c- p>:</c-><c- f>StaticContextualData</c-><c- p>;</c->
+           <c- nn>sotw</c-><c- p>:</c-><c- f>describesFeature</c-> <c- nn>sotw</c-><c- p>:</c-><c- f>AuthorizationCredentials</c-> <c- p>;</c->
+           <c- nn>sotw</c-><c- p>:</c-><c- f>value</c-> <c- s>"XXXX"</c-> <c- c># whatever value here</c->
+    <c- p>],</c-> <c- p>[</c->
+           <c- b>a</c-> <c- nn>sotw</c-><c- p>:</c-><c- f>DynamicContextualData</c-><c- p>;</c->
+           <c- nn>sotw</c-><c- p>:</c-><c- f>describesFeature</c-> <c- nn>sotw</c-><c- p>:</c-><c- f>TemporalData</c-> <c- p>;</c->
+           <c- nn>sotw</c-><c- p>:</c-><c- f>expected</c-> <c- nn>xsd</c-><c- p>:</c-><c- f>dateTime</c-> 
+           <c- c># This instance could be even linked to a policy if needed, kind of declaring a variable</c->
+    <c- p>];</c->
+
+    <c- nn>sotw</c-><c- p>:</c-><c- f>action</c-> <c- p>[</c->                                      
+      <c- b>a</c-> <c- nn>ex</c-><c- p>:</c-><c- f>Compensate</c-><c- p>;</c->                                  
+      <c- nn>ex</c-><c- p>:</c-><c- f>payAmount</c-> <c- s>"5.00"</c-><c- p>^^</c-><c- nn>xsd</c-><c- p>:</c-><c- f>decimal</c-><c- p>;</c->                 
+      <c- nn>odrl</c-><c- p>:</c-><c- f>payee</c-> <c- nn>party</c-><c- p>:</c-><c- f>sony</c-><c- p>;</c->
+      <c- nn>dcterms</c-><c- p>:</c-><c- f>issued</c-> <c- s>"2025-07-23T00:00:00Z"</c-><c- p>^^</c-><c- nn>xsd</c-><c- p>:</c-><c- f>dateTime</c-> 
+    <c- p>]</c-> <c- p>.</c->
+</pre>
+    - Beatriz comments: I like it, but I think then all information that could be in the sotw should be modelled as either static or dynamic, e.g., the <code>sotw:action</code> should be a <code>sotw:StaticContextualData</code>
+    - Beatriz comments: at some point the dynamic value should actually be instantiated for the evaluation, should we have a property for this?
+    - Beatriz comments: I agree with the extensibility, but there are data individuals that should be already in the model given that they are needed to evaluate constraints that are in the current standard. So, we definitely should have <code>sotw:DataFeature</code>s for the time, e.g., <code>TemporalData</code>, 
+ <a class="issue-return" href="#issue-3" title="Jump to section">↵</a></pre>
+  </div>
 <script>/* Boilerplate: script-dom-helper */
 "use strict";
 function query(sel) { return document.querySelector(sel); }
@@ -2766,7 +2989,7 @@ function parseHTML(markup) {
 "use strict";
 {
 let dfnPanelData = {
-"compliance-report": {"dfnID":"compliance-report","dfnText":"ODRL Compliance Report","external":false,"refSections":[{"refs":[{"id":"ref-for-compliance-report"}],"title":"3. State of the World"}],"url":"#compliance-report"},
+"compliance-report": {"dfnID":"compliance-report","dfnText":"ODRL Compliance Report","external":false,"refSections":[{"refs":[{"id":"ref-for-compliance-report"}],"title":"3.1. Issues"}],"url":"#compliance-report"},
 "er-dfn": {"dfnID":"er-dfn","dfnText":"Evaluation Request","external":false,"refSections":[{"refs":[{"id":"ref-for-er-dfn"}],"title":"1. Introd\u00aduction"}],"url":"#er-dfn"},
 "evaluator": {"dfnID":"evaluator","dfnText":"ODRL Evaluator","external":false,"refSections":[{"refs":[{"id":"ref-for-evaluator"}],"title":"1. Introd\u00aduction"}],"url":"#evaluator"},
 "sotw-dfn": {"dfnID":"sotw-dfn","dfnText":"State of the World","external":false,"refSections":[{"refs":[{"id":"ref-for-sotw-dfn"}],"title":"1. Introd\u00aduction"}],"url":"#sotw-dfn"},
