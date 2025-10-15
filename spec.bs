@@ -70,6 +70,9 @@ Repository: https://github.com/KNowledgeOnWebScale/sotw
 }
 </pre>
 
+Note: **Key publications that contributed to this work:** Esteves *et al.*, 2025, [*'Capturing Requests and Context for
+ODRL-based Access and Usage Control'*](https://w3id.org/force/papers/WOP2025).
+
 Introd­uction {#introduction}
 ============================
 
