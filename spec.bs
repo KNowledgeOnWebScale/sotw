@@ -1,7 +1,7 @@
 <pre class='metadata'>
 Title: Contextual Inputs for ODRL Evaluators
 Shortname: SotW
-Level: none
+Level: 0.1
 Status: LD
 Editor: Beatriz Esteves, Ghent University - imec http://idlab.ugent.be/, beatriz.esteves@ugent.be
 Editor: Wout Slabbinck, Ghent University - imec http://idlab.ugent.be/, wout.slabbinck@ugent.be
