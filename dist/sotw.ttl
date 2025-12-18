@@ -21,8 +21,8 @@
     owl:versionInfo "0.2" ;
     owl:versionIRI <https://w3id.org/force/sotw/0.2> ;
     dcterms:created "2025-08-12"^^xsd:date ;
-    dcterms:modified "2025-12-16"^^xsd:date ;
-    dcterms:issued "2025-12-16"^^xsd:date ;
+    dcterms:modified "2025-12-18"^^xsd:date ;
+    dcterms:issued "2025-12-18"^^xsd:date ;
     dcterms:creator <https://solidweb.me/besteves4/profile/card#me>,
         <https://pod.woutslabbinck.com/profile/card#me>,
         <#andrea> ;
@@ -44,6 +44,7 @@ sotw:SotW a rdfs:Class, owl:Class, skos:Concept ;
     skos:definition "Knowledge representing real-world information aiding the evaluation of ODRL Policies"@en .
 
 sotw:context a rdfs:Property, skos:Concept ;
+    rdfs:label "Context"@en ;
     rdfs:isDefinedBy sotw: ;
     skos:definition "Denotes contextual information related to the state of the world"@en ;
     rdfs:domain sotw:SotW ;
@@ -51,6 +52,7 @@ sotw:context a rdfs:Property, skos:Concept ;
 
 sotw:conditionID a rdfs:Property, skos:Concept ;
     rdfs:isDefinedBy sotw: ;
+    rdfs:label "Condition ID"@en ;
     skos:definition "Denotes a relationship between a certain SotW context and a particular rule, constraint or duty"@en ;
     skos:example "Link contextual information about a payment to a duty to pay within a permission to use a certain asset"@en ;
     rdfs:domain rdfs:Resource ;
@@ -75,37 +77,43 @@ sotw:DataFeature a rdfs:Class, owl:Class, skos:Concept ;
     skos:definition "A Data Feature describes a certain parameter that is being assessed in the Request Parameter"@en ;
     skos:example "Temporal data can be a data feature. As such, the request parameter should expect a date type value related to this feature"@en .
 
-sotw:requestedAction a rdfs:Property, skos:Concept ;
+sotw:evaluatedAction a rdfs:Property, skos:Concept ;
     rdfs:isDefinedBy sotw: ;
+    rdfs:label "Evaluated Action"@en ;
     skos:definition "Denotes the requested action to be evaluated"@en ;
     rdfs:domain sotw:EvaluationRequest ;
     rdfs:range odrl:Action .
 
-sotw:requestingParty a rdfs:Property, skos:Concept ;
+sotw:evaluatedParty a rdfs:Property, skos:Concept ;
     rdfs:isDefinedBy sotw: ;
-    skos:definition "Denotes the party requesting the action"@en ;
+    rdfs:label "Evaluated Party"@en ;
+    skos:definition "Denotes the party being evaluated in relation to the evaluated action"@en ;
     rdfs:domain sotw:EvaluationRequest ;
     rdfs:range odrl:Party .
 
-sotw:requestedTarget a rdfs:Property, skos:Concept ;
+sotw:evaluatedTarget a rdfs:Property, skos:Concept ;
     rdfs:isDefinedBy sotw: ;
-    skos:definition "Denotes the asset on which the action is to be performed"@en ;
+    rdfs:label "Evaluated Target"@en ;
+    skos:definition "Denotes the asset being evaluated in relation to the evaluated action"@en ;
     rdfs:domain sotw:EvaluationRequest ;
     rdfs:range odrl:Asset .
 
 sotw:requestParameter a rdfs:Property, skos:Concept ;
     rdfs:isDefinedBy sotw: ;
+    rdfs:label "Request Parameter"@en ;
     skos:definition "Denotes additional contextual information that MAY be included in the request to be evaluated"@en ;
     rdfs:domain sotw:EvaluationRequest ;
     rdfs:range sotw:RequestParameter .
 
 sotw:describesFeature a rdfs:Property, skos:Concept ;
     rdfs:isDefinedBy sotw: ;
-    skos:definition "Describes the feature that is being assessed in the request parameter"@en ;
+    rdfs:label "Describes Feature"@en ;
+    skos:definition "Describes the data feature that is being assessed in the request parameter"@en ;
     rdfs:domain sotw:RequestParameter ;
     rdfs:range sotw:DataFeature .
 
 sotw:value a rdfs:Property, skos:Concept ;
+    rdfs:label "Value"@en ;
     rdfs:isDefinedBy sotw: ;
     skos:definition "Attributes a value to the data feature"@en ;
     rdfs:domain sotw:RequestParameter .

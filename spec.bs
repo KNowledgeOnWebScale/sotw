@@ -140,14 +140,14 @@ Evaluation Request {#EvaluationRequest}
 An ODRL Evaluator requires an Evaluation Request as input. An Evaluation Request represents a formal description of a requested action. In cases where a request is not being made, e.g., during a policy monitoring scenario, an empty Evaluation Request should be provided as input to the ODRL Evaluator.
 
 The Evaluation Request MUST contain the following properties:
-- `requestedAction`: The action to be evaluated (e.g., `odrl:use`, `odrl:read`, `odrl:modify`).
-- `requestingParty`: The party (e.g., person or organisation) requesting the action.
-- `requestedTarget`: The asset (e.g., file, document, data, service) on which the action is to be performed.
+- `evaluatedAction`: The action to be evaluated (e.g., `odrl:use`, `odrl:read`, `odrl:modify`).
+- `evaluatedParty`: The party (e.g., person or organisation) being evaluated in relation to the evaluated action.
+- `evaluatedTarget`: The asset (e.g., file, document, data, service) being evaluated in relation to the evaluated action.
 
-Additional contextual information can also be included in the Evaluation Request, e.g., temporal information or a purpose for exercising the requested action. The `requestParameter` property MAY be used to associate an `EvaluationRequest` with this additional contextual information, i.e., the `RequestParameter`.
+Additional contextual information can also be included in the Evaluation Request, e.g., temporal information or a purpose for exercising the evaluated action. The `requestParameter` property MAY be used to associate an `EvaluationRequest` with this additional contextual information, i.e., the `RequestParameter`.
 The following properties are available to describe a `RequestParameter`:
 
-- `describesFeature`: Describe the feature that is being assessed in the request parameter.
+- `describesFeature`: Describe the data feature that is being assessed in the request parameter.
 - `value`: The concrete value attributed to the data feature.
 
 <figure id="evaluation-request-model">
@@ -162,9 +162,9 @@ ODRL evaluator to determine whether this request is permitted or not.
 
 ```turtle
 ex:request a sotw:EvaluationRequest ;
-    sotw:requestingParty <http://example.com/party/billie> ;
-    sotw:requestedAction odrl:play ;
-    sotw:requestedTarget <http://example.com/music/1999.mp3> ;
+    sotw:evaluatedParty <http://example.com/party/billie> ;
+    sotw:evaluatedAction odrl:play ;
+    sotw:evaluatedTarget <http://example.com/music/1999.mp3> ;
     sotw:requestParameter [
         a sotw:RequestParameter ;
         sotw:value "2025-11-24T11:44.22"^^xsd:dateTime ;

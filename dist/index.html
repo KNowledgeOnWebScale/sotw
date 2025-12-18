@@ -1490,7 +1490,7 @@ Possible extra rowspan handling
 </style>
   <meta content="Bikeshed version b25686b9f, updated Fri Mar 14 14:15:20 2025 -0700" name="generator">
   <link href="https://w3id.org/force/sotw" rel="canonical">
-  <meta content="7250e472dce119741e821c2004e3c28537cd7d67" name="revision">
+  <meta content="2b4dcdfaaf4ad64b6609d1d90f09e4a16ba69e29" name="revision">
   <meta content="dark light" name="color-scheme">
 <style>/* Boilerplate: style-autolinks */
 .css.css, .property.property, .descriptor.descriptor {
@@ -2139,7 +2139,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://knows.idlab.ugent.be/"> <img alt="KNoWS" height="48" src="logo.png"> </a></p>
    <h1 class="p-name no-ref" id="title">Contextual Inputs for ODRL Evaluators</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="profile-and-date"><span class="content">Living Document, <time class="dt-updated" datetime="2025-12-16">16 December 2025</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="profile-and-date"><span class="content">Living Document, <time class="dt-updated" datetime="2025-12-18">18 December 2025</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -2242,17 +2242,17 @@ which are not standardised in ODRL, i.e., the <a href="#sotw-dfn" id="ref-for-so
    <p>The Evaluation Request MUST contain the following properties:</p>
    <ul>
     <li data-md>
-     <p><code>requestedAction</code>: The action to be evaluated (e.g., <code>odrl:use</code>, <code>odrl:read</code>, <code>odrl:modify</code>).</p>
+     <p><code>evaluatedAction</code>: The action to be evaluated (e.g., <code>odrl:use</code>, <code>odrl:read</code>, <code>odrl:modify</code>).</p>
     <li data-md>
-     <p><code>requestingParty</code>: The party (e.g., person or organisation) requesting the action.</p>
+     <p><code>evaluatedParty</code>: The party (e.g., person or organisation) being evaluated in relation to the evaluated action.</p>
     <li data-md>
-     <p><code>requestedTarget</code>: The asset (e.g., file, document, data, service) on which the action is to be performed.</p>
+     <p><code>evaluatedTarget</code>: The asset (e.g., file, document, data, service) being evaluated in relation to the evaluated action.</p>
    </ul>
-   <p>Additional contextual information can also be included in the Evaluation Request, e.g., temporal information or a purpose for exercising the requested action. The <code>requestParameter</code> property MAY be used to associate an <code>EvaluationRequest</code> with this additional contextual information, i.e., the <code>RequestParameter</code>.
+   <p>Additional contextual information can also be included in the Evaluation Request, e.g., temporal information or a purpose for exercising the evaluated action. The <code>requestParameter</code> property MAY be used to associate an <code>EvaluationRequest</code> with this additional contextual information, i.e., the <code>RequestParameter</code>.
 The following properties are available to describe a <code>RequestParameter</code>:</p>
    <ul>
     <li data-md>
-     <p><code>describesFeature</code>: Describe the feature that is being assessed in the request parameter.</p>
+     <p><code>describesFeature</code>: Describe the data feature that is being assessed in the request parameter.</p>
     <li data-md>
      <p><code>value</code>: The concrete value attributed to the data feature.</p>
    </ul>
@@ -2265,9 +2265,9 @@ the asset <a href="http://example.com/music/1999.mp3">http://example.com/music/1
 the <code>EvaluationRequest</code> in the example below must be presented to an
 ODRL evaluator to determine whether this request is permitted or not.</p>
 <pre class="language-turtle highlight"><c- nn>ex</c-><c- p>:</c-><c- f>request</c-> <c- b>a</c-> <c- nn>sotw</c-><c- p>:</c-><c- f>EvaluationRequest</c-> <c- p>;</c->
-    <c- nn>sotw</c-><c- p>:</c-><c- f>requestingParty</c-> <c- g>&lt;http://example.com/party/billie></c-> <c- p>;</c->
-    <c- nn>sotw</c-><c- p>:</c-><c- f>requestedAction</c-> <c- nn>odrl</c-><c- p>:</c-><c- f>play</c-> <c- p>;</c->
-    <c- nn>sotw</c-><c- p>:</c-><c- f>requestedTarget</c-> <c- g>&lt;http://example.com/music/1999.mp3></c-> <c- p>;</c->
+    <c- nn>sotw</c-><c- p>:</c-><c- f>evaluatedParty</c-> <c- g>&lt;http://example.com/party/billie></c-> <c- p>;</c->
+    <c- nn>sotw</c-><c- p>:</c-><c- f>evaluatedAction</c-> <c- nn>odrl</c-><c- p>:</c-><c- f>play</c-> <c- p>;</c->
+    <c- nn>sotw</c-><c- p>:</c-><c- f>evaluatedTarget</c-> <c- g>&lt;http://example.com/music/1999.mp3></c-> <c- p>;</c->
     <c- nn>sotw</c-><c- p>:</c-><c- f>requestParameter</c-> <c- p>[</c->
         <c- b>a</c-> <c- nn>sotw</c-><c- p>:</c-><c- f>RequestParameter</c-> <c- p>;</c->
         <c- nn>sotw</c-><c- p>:</c-><c- f>value</c-> <c- s>"2025-11-24T11:44.22"</c-><c- p>^^</c-><c- nn>xsd</c-><c- p>:</c-><c- f>dateTime</c-> <c- p>;</c->
